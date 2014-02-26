@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Class Survivor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Way to Survive Class">
+    <meta name="author" content="Dan Zebrowski">
+
+    {% block cssblock %}
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/default.css" rel="stylesheet">
+    {% endblock cssblock %}
+
+  </head>
+  <body>
+    {% block bodyblock %}{% endblock %}
+  </body>
+
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="/js/jquery.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <script src="/js/problemserver.js"></script>
+  {% block jsblock %}{% endblock %}
+  
+</html>
