@@ -1,0 +1,71 @@
+Understanding google app engine
+
+quick notes
+	-to add your own stuff/test/whatever, clone the git repo, do File->add existing application
+	-to run the website, select the project then hit run, once the stop button lights up next to run you can hit browse to browse the site running on localhost. you need to hit stop and run again if you make changes tp the code
+	-click the log button for debug info if what comes up from browse is a completely blank page, this will most liely happen from whitespace errors
+
+
+
+
+
+
+
+root directory
+-main.py
+	this actually doesnt do much for us, what you need to know is that
+
+	app = webapp2.WSGIApplication([
+    	('/', MainHandler),
+    	('/home', home.Home)
+	], debug=True)
+
+	defines the different webpages/links we have. So right now we have only 2 pages which you can get to by going to class-survivor.appspot.com/ and class-survivor.appspot.com/home. However if you notice in the
+	main handler the '/' link is jsut redirecting to /home so we really only have one. The second argument defines where the python code for the page lives, so the /home is in home.py in the Home class.
+
+	To add a new page "DansPage", for example, you would add the tuple ('/DansPage', danspage.DansPage) where '/DansPage' is the extension to the url and danspage.DansPage tells main where the python code is(danspage.py in the DansPage class)
+	In this example the link can be anything, the text does not have to match the python file name.
+
+-app.yaml
+	dont worry about this
+
+-index.yaml
+	no idea what this is for, maybe something to do with their database system? but we wont use that cause its schema-less and doesnt use strict MYSQL
+
+-favicon.ico
+	the tiny picture displayed on the left of the tab in a browser
+
+
+
+
+in the pages folder
+
+-__init__.py
+	not sure exactly why this file is needed, but without it google app engine cant import our files from here. so whenever we add a page we nust add its name in this file
+
+-base_handler.py
+	right now this doesnt do much for us either, however, if in the future we figure a general way to handle all of our web pages then all the pages will inherit things from this.
+
+	template_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates')
+	jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
+                               autoescape = True)
+
+    Dont worry about these lines, they just specify where our html will be stored so jinjia can find it.
+
+	the three functions inside of the handler just help to render the actual html with the jinjia templateing.
+
+-home.py
+	right now the only webpage on our site. just an example page that does nothing.
+
+	class Home(base_handler.BaseHandler):
+		def get(self):
+			self.render("home.html")
+
+		#def post(self):
+			#does nothing right now
+			#would look like self.render("home.html", stuff we want to put on the page)
+
+	instead of having to handle posting and getting in the html code google app engine handles it in the python file. The second argument in render is what you are updating the page with,
+	for example if we wanted to display "Welcome" username "to Class Survivor" after someone signed up, in the html we would do    Welcome {{username}} to Class Survivor  
+	in the corresponding html. {{}} denotes some shit for jinjia and here we would pass something named username in the self.render call in post to get it into that spot in the html.
+
