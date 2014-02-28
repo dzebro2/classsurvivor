@@ -8,6 +8,31 @@
     <meta name="description" content="A Way to Survive Class">
     <meta name="author" content="Dan Zebrowski">
 
+      <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+      <div id="header-wrapper">
+          <div id="header" class="container">
+              <div id="logo">
+                  <h1><a>Class Survivor</a></h1>
+              </div>
+              <div id="menu">
+                  <ul>
+                      <li class="current_page_item"><a href="home" accesskey="1" title="">Homepage</a></li>
+                      <li class="current_page_item"><a href="#" accesskey="2" title="">Login</a></li>
+                      <li class="current_page_item"><a href="register" accesskey="2" title="">Sign Up</a></li>
+
+                  </ul>
+
+                  <Form method="post">
+                      <input type="text" name="Lemail" placeholder="Email">
+                      <input type="password" name="Lpassword" placeholder="password">
+                      <input type="hidden" name="login" value="login">
+                      <input type="submit" name="LSubmit" value="Submit">
+                  </Form>
+
+              </div>
+
+          </div>
+      </div>
     {% block cssblock %}
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/default.css" rel="stylesheet">
@@ -15,7 +40,10 @@
 
   </head>
   <body>
-    {% block bodyblock %}{% endblock %}
+    {% block bodyblock %}
+
+
+    {% endblock %}
   </body>
 
   <!-- Placed at the end of the document so the pages load faster -->

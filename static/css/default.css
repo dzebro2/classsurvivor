@@ -1721,6 +1721,23 @@ ul.contact li a:before
 	color: #FFFFFF;
 }
 
+label{
+    display:inline-block;
+    width:200px;
+    margin-right:30px;
+    text-align:right;
+}
+
+input{
+
+}
+
+fieldset{
+    border:none;
+    width:500px;
+    margin:0px auto;
+}
+
 ul.contact li a.icon-twitter:before
 {
 	background: #2DAAE4;

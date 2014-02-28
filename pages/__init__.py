@@ -1,4 +1,5 @@
 __all__ = [
     "base_handler",
-    "home"
+    "home",
+    "signup"
 ]

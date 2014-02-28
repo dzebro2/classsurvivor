@@ -1,0 +1,53 @@
+{% extends "boilerplate.html" %}
+{% block bodyblock %}
+
+<div id="wrapper">
+    <div id="welcome" class="wrapper-style1">
+        <div class="title">
+            <h2>Registration</h2>
+            </div>
+
+            <Form method="post">
+                <fieldset>
+            {% for question in qList %}
+                {% if question == 'Password'%}
+                    <label for={{ question }}>{{ question }}: </label><input type="password" name=R{{ question }}>
+                {% endif %}
+
+                {% if question == 'ConfirmPassword'%}
+                    <label for={{ question }}>Confirm Password: </label><input type="password" name=R{{ question }}>
+                {% endif %}
+
+                {% if question != 'Password' and question != 'ConfirmPassword'%}
+                    <label for={{ question }}>{{ question }}: </label><input type="text" name=R{{ question }}>
+                {% endif %}
+            {% endfor %}
+
+                 </fieldset>
+                <input type="hidden" name="register" value="register">
+                <br><p style="text-align: center;"><input type="submit" name="RSubmit" value="Submit"></p>
+
+            </Form>
+    </div>
+</div>
+
+<div id="footer" class="container">
+    <div>
+        <div>
+            <h2>Get in touch</h2>
+            <span class="byline">We Probably Won't Have Any Of These Though</span> </div>
+        <ul class="contact">
+            <li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
+            <li><a href="#" class="icon icon-facebook"><span></span></a></li>
+            <li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+            <li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
+            <li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
+        </ul>
+    </div>
+    <p>&copy; 2014 Class-Survivor.com. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>.</p>
+</div>
+
+{% endblock %}
+
+{% block jsblock %}
+{% endblock %}
