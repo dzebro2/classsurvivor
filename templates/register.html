@@ -10,9 +10,9 @@
             <Form method="post">
                 <fieldset>
             {% for question in qList %}
-                {% if question == 'Password'%}
+                 {% if question == 'Password'%}
                     <label for={{ question }}>{{ question }}: </label><input type="password" name=R{{ question }}>
-                {% endif %}
+                  {% endif %}
 
                 {% if question == 'ConfirmPassword'%}
                     <label for={{ question }}>Confirm Password: </label><input type="password" name=R{{ question }}>

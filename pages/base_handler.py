@@ -6,6 +6,7 @@ import re
 import jinja2
 import MySQLdb
 import hashlib
+import uuid
 
 template_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates')
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
@@ -25,26 +26,29 @@ class BaseHandler(webapp2.RequestHandler):
         self.response.out.write(*a, **kw)
 
     def getDigest(self, password):
-        return hashlib.sha256(password).hexdigest()
+        salt = uuid.uuid4().hex
+        return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + ':' + salt
 
     def isPassword(self, password, digest):
-        return self.getDigest(password) == digest
+        passwrd, salt = digest.split(':')
+        return passwrd == hashlib.sha256(salt.encode() + password.encode()).hexdigest()
 
     def registerPost(self):
         myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
-                               user="akkowal2_drew", passwd="asdfasdasf")
+                               user="akkowal2_drew", passwd="8558438")
         cur = myDB.cursor()
-        cur.execute("SELECT Email FROM User WHERE Email='" + self.request.get('REmail') + "'")
+        email = self.request.get('REmail')
+        cur.execute("SELECT Email FROM User WHERE Email=%s", (email,))
         if not cur.fetchall():
             #CREATE ACCOUNT
-            if self.valid_email(self.request.get('REmail')) and (
+            if self.valid_email(email) and (
                     self.request.get('RPassword') == self.request.get('RConfirmPassword')):
                 #passwords match and email is valid
                 name = self.request.get('RName')
                 email = self.request.get('REmail')
                 hashedPass = self.getDigest(self.request.get('RPassword'))
                 try:
-                    cur.execute("""INSERT INTO User (Email, Name, HashedPassword) VALUES (%s, %s, %s)""",
+                    cur.execute("""INSERT INTO User (Email, Name, Password) VALUES (%s, %s, %s)""",
                                 (email, name, hashedPass))
                     myDB.commit()
                 except:
@@ -63,22 +67,25 @@ class BaseHandler(webapp2.RequestHandler):
 
     def loginPost(self):
         myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
-                               user="akkowal2_drew", passwd="asdfasdafsd")
+                               user="akkowal2_drew", passwd="4564845348")
         cur = myDB.cursor()
-
-        hash = self.getDigest(self.request.get('Lpassword'))
         email = self.request.get('Lemail')
 
         logging.info("email: " + email)
-        logging.info("hash: " + hash)
 
-        cur.execute("SELECT * FROM User WHERE Email='" + email + "' AND HashedPassword='" + hash + "'")
-
-        if cur.fetchall():
-            loggedIn = email
-            logging.info(loggedIn + " is logged in!")
-        else:
+        cur.execute("SELECT Password FROM User WHERE Email=%s", email)
+        if not cur.fetchall():
             logging.info('Incorrect Email/Password')
+        else:
+            digest = None
+            for row in cur:
+                digest = row[0]
+            correctPass = self.isPassword(self.request.get('Lpassword'), digest)
+            if correctPass:
+                loggedIn = email
+                logging.info(loggedIn + " is logged in!")
+            else:
+                logging.info('Incorrect Email/Password')
 
         self.render("home.html")
 
