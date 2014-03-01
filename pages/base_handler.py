@@ -7,6 +7,8 @@ import jinja2
 import MySQLdb
 import hashlib
 import uuid
+import time
+import datetime
 
 template_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates')
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
@@ -35,7 +37,7 @@ class BaseHandler(webapp2.RequestHandler):
 
     def registerPost(self):
         myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
-                               user="akkowal2_drew", passwd="8558438")
+                               user="akkowal2_drew", passwd="cs411sp14")
         cur = myDB.cursor()
         email = self.request.get('REmail')
         cur.execute("SELECT Email FROM User WHERE Email=%s", (email,))
@@ -54,8 +56,6 @@ class BaseHandler(webapp2.RequestHandler):
                 except:
                     myDB.rollback()
 
-                #cur.query()
-                #logging.info("Status: " + cur.statusmessage)
                 self.redirect('/register')
             else:
                 self.redirect('/home')
@@ -67,7 +67,7 @@ class BaseHandler(webapp2.RequestHandler):
 
     def loginPost(self):
         myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
-                               user="akkowal2_drew", passwd="4564845348")
+                               user="akkowal2_drew", passwd="cs411sp14")
         cur = myDB.cursor()
         email = self.request.get('Lemail')
 
@@ -76,6 +76,7 @@ class BaseHandler(webapp2.RequestHandler):
         cur.execute("SELECT Password FROM User WHERE Email=%s", email)
         if not cur.fetchall():
             logging.info('Incorrect Email/Password')
+            self.render("home.html")
         else:
             digest = None
             for row in cur:
@@ -84,10 +85,13 @@ class BaseHandler(webapp2.RequestHandler):
             if correctPass:
                 loggedIn = email
                 logging.info(loggedIn + " is logged in!")
+                sessionKey = hashlib.sha256(str(email)+str(self.request.remote_addr)+str(time.time())).hexdigest()
+                cur.execute("""UPDATE User SET SessionKey=%s WHERE Email=%s""", (sessionKey, email))
+                myDB.commit()
+                self.redirect('/accountinfo/' + sessionKey)
             else:
                 logging.info('Incorrect Email/Password')
-
-        self.render("home.html")
+                self.render("home.html")
 
     def post(self):
         if self.request.get('register'):
