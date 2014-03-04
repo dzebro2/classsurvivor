@@ -21,4 +21,5 @@ class signout(base_handler.BaseHandler):
         cur = myDB.cursor()
         cur.execute("""UPDATE User SET SessionKey=%s WHERE SessionKey=%s""", ('NULL', key))
         myDB.commit()
+        self.response.delete_cookie('auth')
         self.redirect('/home')

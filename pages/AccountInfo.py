@@ -16,7 +16,7 @@ from pages import base_handler
 
 
 class AccountInfo(base_handler.BaseHandler):
-    def get(self, sessionkey):
+    def get(self, sessionkey, updated=None):
         #args = self.request.get('args')
         logging.info("I GET HERE!")
         logging.info("Session Key: " + sessionkey)
@@ -35,7 +35,11 @@ class AccountInfo(base_handler.BaseHandler):
             return
 
         #logging.info("User Information: " + str(userInfo))
+        if not updated:
+            update = False
+        else:
+            update = True
 
-        info = [['Name', userInfo[1]], ['Email', userInfo[0]], ['Class Status', userInfo[3]], ['Gender', userInfo[4]], ['Location', userInfo[5]]]
-        context = {'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
+        info = [['Email', userInfo[0]], ['Name', userInfo[1]], ['Class Status', userInfo[3]], ['Gender', userInfo[4]], ['Location', userInfo[5]]]
+        context = {'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/', 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
         self.render("AccountInfo.html", **context)

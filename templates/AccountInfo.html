@@ -5,14 +5,32 @@
     <div id="welcome" class="wrapper-style1">
         <div class="title">
             <h2>Account Information</h2>
+            {% if updated: %}
+                <span class="byline">Information Updated</span>
+            {% endif %}
         </div>
-
+        <Form method="post">
         <fieldset>
             {% for info in infoList %}
-                <label for={{ info[1] }}>{{ info[0] }}: {{ info[1] }}</label>
-            {% endfor %}
-        </fieldset>
+                {% if not info[1]: %}
+                    <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="" name="{{ info[0] }}">
+                {% else: %}
+                    {% if info[0] == 'Email': %}
+                        <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' readonly value="{{ info[1] }}" name="{{ info[0] }}">
+                    {% else: %}
+                        <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="{{ info[1] }}" name="{{ info[0] }}">
+                    {% endif %}
 
+
+                {% endif %}
+
+            {% endfor %}
+
+
+        </fieldset>
+        <input type="hidden" name="editInfo" value="editInfo">
+        <br><p style="text-align: center;"><input type="submit" name="ESubmit" value="Submit"></p>
+        </Form>
     </div>
 </div>
 

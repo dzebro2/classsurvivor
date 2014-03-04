@@ -9,6 +9,7 @@ import hashlib
 import uuid
 import time
 import datetime
+from webapp2_extras import sessions
 
 template_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates')
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
@@ -81,20 +82,47 @@ class BaseHandler(webapp2.RequestHandler):
             digest = None
             for row in cur:
                 digest = row[0]
-            correctPass = self.isPassword(self.request.get('Lpassword'), digest)
+            passW = self.request.get('Lpassword')
+            correctPass = self.isPassword(passW, digest)
             if correctPass:
                 loggedIn = email
                 logging.info(loggedIn + " is logged in!")
-                sessionKey = hashlib.sha256(str(email)+str(self.request.remote_addr)+str(time.time())).hexdigest()
+                sessionKey = hashlib.sha256(str(email)+str(self.request.remote_addr)+str(passW)+str(time.time())).hexdigest()
+                self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=60, overwrite=True) #remember to add secure=True when deploying
                 cur.execute("""UPDATE User SET SessionKey=%s WHERE Email=%s""", (sessionKey, email))
                 myDB.commit()
-                self.redirect('/accountinfo/' + sessionKey)
+                self.redirect('/accountinfo/' + sessionKey + '/')
             else:
                 logging.info('Incorrect Email/Password')
                 self.render("home.html")
 
-    def post(self):
+    def editPost(self, SK):
+        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+                               user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        name = self.request.get('Name')
+        classStatus = self.request.get('Class Status')
+        gender = self.request.get('Gender')
+        location = self.request.get('Location')
+
+        if name == "":
+            name = None
+        if classStatus == "":
+            classStatus = None
+        if gender == "":
+            gender = None
+        if location == "":
+            location = None
+
+        cur.execute("UPDATE User SET Name=%s, ClassStatus=%s, Gender=%s, Location=%s WHERE SessionKey=%s", (name, classStatus, gender, location, SK))
+        myDB.commit()
+        self.redirect('/accountinfo/' + SK + '/4bvgh')
+
+    def post(self, SK=None, update=None):
         if self.request.get('register'):
             self.registerPost()
         elif self.request.get('login'):
             self.loginPost()
+        elif self.request.get('editInfo'):
+            self.editPost(SK)

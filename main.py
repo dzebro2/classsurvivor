@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-import webapp2
+from webapp2 import *
 import logging
 import sys
 import os
@@ -25,15 +25,22 @@ import json
 from pages import *
 
 
-class MainHandler(webapp2.RequestHandler):
+class MainHandler(RequestHandler):
     def get(self):
-        self.redirect('/home')
+        auth_cookie = self.request.cookies.get('auth')
+        if auth_cookie == None:
+            logging.info('No Previous Auth Cookie!')
+            self.redirect('/home')
+        else:
+            logging.info('Auth Cookie: ' + str(auth_cookie))
+            self.redirect('/accountinfo/' + str(auth_cookie) + '/')
 
 
-app = webapp2.WSGIApplication([
+
+app = WSGIApplication([
                                   (r'/', MainHandler),
                                   (r'/home', home.Home),
                                   (r'/register', signup.Sign),
-                                  (r'/accountinfo/(.*)', AccountInfo.AccountInfo),
+                                  (r'/accountinfo/(.*)/(.*)', AccountInfo.AccountInfo),
                                     (r'/signout/(.*)', signout.signout)
                               ], debug=True)
