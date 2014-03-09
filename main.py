@@ -28,7 +28,7 @@ from pages import *
 class MainHandler(RequestHandler):
     def get(self):
         auth_cookie = self.request.cookies.get('auth')
-        if auth_cookie == None:
+        if not auth_cookie:
             logging.info('No Previous Auth Cookie!')
             self.redirect('/home')
         else:
