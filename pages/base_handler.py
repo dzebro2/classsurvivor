@@ -88,7 +88,7 @@ class BaseHandler(webapp2.RequestHandler):
                 loggedIn = email
                 logging.info(loggedIn + " is logged in!")
                 sessionKey = hashlib.sha256(str(email)+str(self.request.remote_addr)+str(passW)+str(time.time())).hexdigest()
-                self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=60, overwrite=True) #remember to add secure=True when deploying
+                self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=86400, overwrite=True) #remember to add secure=True when deploying
                 cur.execute("""UPDATE User SET SessionKey=%s WHERE Email=%s""", (sessionKey, email))
                 myDB.commit()
                 self.redirect('/accountinfo/' + sessionKey + '/')
@@ -119,6 +119,25 @@ class BaseHandler(webapp2.RequestHandler):
         myDB.commit()
         self.redirect('/accountinfo/' + SK + '/4bvgh')
 
+    def deleteAccountPost(self):
+        logging.info('account agreed to deletion')
+        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+                               user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        cookie = self.request.cookies.get('auth')
+
+        try:
+            cur.execute("DELETE FROM User WHERE SessionKey='%s'" % (cookie,))
+            myDB.commit()
+            self.response.delete_cookie('auth')
+            self.redirect('/home')
+        except:
+            myDB.rollback()
+            self.redirect('/accountinfo/' + cookie + '/')
+
+
+
     def post(self, SK=None, update=None):
         if self.request.get('register'):
             self.registerPost()
@@ -126,3 +145,6 @@ class BaseHandler(webapp2.RequestHandler):
             self.loginPost()
         elif self.request.get('editInfo'):
             self.editPost(SK)
+        elif self.request.get('deleteAccount'):
+            self.deleteAccountPost()
+
