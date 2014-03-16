@@ -33,7 +33,7 @@ class MainHandler(RequestHandler):
             self.redirect('/home')
         else:
             logging.info('Auth Cookie: ' + str(auth_cookie))
-            self.redirect('/accountinfo/' + str(auth_cookie) + '/')
+            self.redirect('/accountinfo/' + str(auth_cookie) + '/a/')
 
 
 

@@ -31,6 +31,7 @@ class AccountInfo(base_handler.BaseHandler):
             userInfo = row
 
         if userInfo is None or sessionkey == 'NULL':
+            logging.info('i dungoofed')
             self.redirect('/home')
             return
 
@@ -40,6 +41,6 @@ class AccountInfo(base_handler.BaseHandler):
         else:
             update = True
 
-        info = [['Email', userInfo[0]], ['Name', userInfo[1]], ['Class Status', userInfo[3]], ['Gender', userInfo[4]], ['Location', userInfo[5]]]
+        info = [['Email', userInfo[0]], ['Name', userInfo[1]], ['Major', userInfo[3]], ['Class Status', userInfo[4]], ['Gender', userInfo[5]], ['Location', userInfo[6]]]
         context = {'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/', 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
         self.render("AccountInfo.html", **context)

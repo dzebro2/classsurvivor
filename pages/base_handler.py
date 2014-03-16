@@ -102,6 +102,7 @@ class BaseHandler(webapp2.RequestHandler):
         cur = myDB.cursor()
 
         name = self.request.get('Name')
+        major = self.request.get('Major')
         classStatus = self.request.get('Class Status')
         gender = self.request.get('Gender')
         location = self.request.get('Location')
@@ -115,7 +116,7 @@ class BaseHandler(webapp2.RequestHandler):
         if location == "":
             location = None
 
-        cur.execute("UPDATE User SET Name=%s, ClassStatus=%s, Gender=%s, Location=%s WHERE SessionKey=%s", (name, classStatus, gender, location, SK))
+        cur.execute("UPDATE User SET Name=%s, Major=%s, ClassStatus=%s, Gender=%s, Location=%s WHERE SessionKey=%s", (name, major, classStatus, gender, location, SK))
         myDB.commit()
         self.redirect('/accountinfo/' + SK + '/4bvgh')
 
@@ -136,6 +137,37 @@ class BaseHandler(webapp2.RequestHandler):
             myDB.rollback()
             self.redirect('/accountinfo/' + cookie + '/')
 
+    def courseSearchPost(self):
+        deptCode = self.request.get('departmentCode')
+        courseNum = self.request.get('courseNumber')
+
+        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+                               user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+        cookie = self.request.cookies.get('auth')
+        try:
+            cur.execute("SELECT ClassID, ProfessorName FROM Class WHERE ClassDepartment=%s AND CourseNumber=%s", (deptCode, courseNum))
+            for row in cur:
+                pass
+            self.redirect('/accountinfo/' + cookie)
+        except:
+            myDB.rollback()
+
+    def addClassPost(self):
+        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+                               user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+        classID = self.request.get('classID')
+        cur.execute("SELECT Email FROM User WHERE SessionKey=%s", (self.request.cookies.get('auth'),))
+        email = None
+        for row in cur:
+            email = row[0]
+
+        try:
+            cur.execute("INSERT INTO UserClassList VALUES (%s, %s)", (email, classID))
+            myDB.commit()
+        except:
+            myDB.rollback()
 
 
     def post(self, SK=None, update=None):
@@ -147,4 +179,10 @@ class BaseHandler(webapp2.RequestHandler):
             self.editPost(SK)
         elif self.request.get('deleteAccount'):
             self.deleteAccountPost()
+        elif self.request.get('courseSearch'):
+            pass
+            #self.courseSearchPost()
+        elif self.request.get('addClass'):
+            self.addClassPost()
+
 

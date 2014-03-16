@@ -21,32 +21,63 @@
                 <span class="byline">Information Updated</span>
             {% endif %}
         </div>
-        <Form method="post">
-        <fieldset>
-            {% for info in infoList %}
-                {% if not info[1]: %}
+        <div class="container">
+        <div align="left" style="float:left; margin-right:auto; width:30%;">
+            <Form method="post">
+                <fieldset>
+                    <label for="DepartCode">Department Code: </label><input type='text' value="" name="departmentCode">
+                    <label for="CourseNum">Course Number: </label><input type='text' value="" name="courseNumber">
+                    <input type="hidden" name="courseSearch" value="courseSearch">
+                    <br><p style="text-align: center;"><input type="submit" name="CSubmit" value="Submit"></p>
+                </fieldset>
+            </Form>
+            <textarea readonly style="width:100%; max-height: 100%; max-width: 100%;">
+                {{searchResults}}
+            </textarea>
+        </div>
+
+        <div align="left" style="float:left; margin-left:auto; width:30%;">
+            <Form method="post">
+                <fieldset>
+                    {% for info in infoList %}
+                    {% if not info[1]: %}
                     <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="" name="{{ info[0] }}">
-                {% else: %}
-                    {% if info[0] == 'Email': %}
-                        <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' readonly value="{{ info[1] }}" name="{{ info[0] }}">
                     {% else: %}
-                        <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="{{ info[1] }}" name="{{ info[0] }}">
+                    {% if info[0] == 'Email': %}
+                    <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' readonly value="{{ info[1] }}" name="{{ info[0] }}">
+                    {% else: %}
+                    <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="{{ info[1] }}" name="{{ info[0] }}">
                     {% endif %}
 
 
-                {% endif %}
+                    {% endif %}
 
-            {% endfor %}
+                    {% endfor %}
 
 
-        </fieldset>
-        <input type="hidden" name="editInfo" value="editInfo">
-        <br><p style="text-align: center;"><input type="submit" name="ESubmit" value="Submit"></p>
-        </Form>
-        <p style="text-align: center;"><button style="color: red;" onclick="confirmDelete()">Delete Account</button>
-        <Form id="deleteForm" method="post">
-            <input type="hidden" name="deleteAccount" value="deleteAccount">
-        </Form>
+                </fieldset>
+                <input type="hidden" name="editInfo" value="editInfo">
+                <br><p style="text-align: center;"><input type="submit" name="ESubmit" value="Submit"></p>
+            </Form>
+            <p style="text-align: center;"><button style="color: red;" onclick="confirmDelete()">Delete Account</button>
+            <Form id="deleteForm" method="post">
+                <input type="hidden" name="deleteAccount" value="deleteAccount">
+            </Form>
+        </div>
+
+            <div align="left" style="float:left; margin-left:auto; width:30%;">
+                <Form method="post">
+                    <fieldset>
+                        <label for="ClassID">Class ID: </label><input type='text' value="" name="classID">
+
+
+                    </fieldset>
+                    <input type="hidden" name="addClass" value="addClass">
+                    <br><p style="text-align: center;"><input type="submit" name="tSubmit" value="Add Class"></p>
+                </Form>
+            </div>
+            </div>
+
     </div>
 </div>
 

@@ -6,25 +6,25 @@
     </list>
     <ignored path="classsurvivor.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394903311828" ignored="false" />
+    <file path="/Dummy.txt" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394928002447" ignored="false" />
     <file path="/signup.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1393883409039" ignored="false" />
     <file path="/register.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1393551672342" ignored="false" />
-    <file path="/main.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394400484544" ignored="false" />
+    <file path="/main.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394918133681" ignored="false" />
     <file path="/home.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1393549375568" ignored="false" />
     <file path="/home.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1393522759800" ignored="false" />
     <file path="/__init__.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1393714119916" ignored="false" />
     <file path="/default.css" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394400772852" ignored="false" />
-    <file path="/base_handler.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394903016581" ignored="false" />
+    <file path="/base_handler.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394918974091" ignored="false" />
     <file path="/boilerplate.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1393551638786" ignored="false" />
     <file path="/BaseLoggedIn.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394400656898" ignored="false" />
-    <file path="/AccountInfo.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394902232120" ignored="false" />
-    <file path="/AccountInfo.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1393892217513" ignored="false" />
+    <file path="/AccountInfo.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394918500725" ignored="false" />
+    <file path="/AccountInfo.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394918075067" ignored="false" />
     <file path="/signout.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1393886091107" ignored="false" />
     <file path="/app.yaml" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1393888326759" ignored="false" />
-    <file path="/Scraper.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394859437199" ignored="false" />
+    <file path="/Scraper.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394935188179" ignored="false" />
     <file path="/Profile.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394406428594" ignored="false" />
     <file path="/Profile.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394406513069" ignored="false" />
-    <file path="$PROJECT_DIR$/../ClassInformationScraper/Scraper.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394859804853" ignored="false" />
+    <file path="$PROJECT_DIR$/../ClassInformationScraper/Scraper.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394935192186" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +88,7 @@
       <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="55" selection-start="794" selection-end="826" vertical-scroll-proportion="0.0">
+            <state line="43" column="59" selection-start="1349" selection-end="1349" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -97,7 +97,7 @@
       <file leaf-file-name="boilerplate.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/boilerplate.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="132" selection-start="1007" selection-end="1007" vertical-scroll-proportion="0.0">
+            <state line="21" column="132" selection-start="1007" selection-end="1007" vertical-scroll-proportion="-7.730769">
               <folding />
             </state>
           </provider>
@@ -124,7 +124,7 @@
       <file leaf-file-name="base_handler.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/base_handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="47" selection-start="5179" selection-end="5179" vertical-scroll-proportion="0.6689576">
+            <state line="169" column="40" selection-start="6703" selection-end="6703" vertical-scroll-proportion="0.8052692">
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -135,8 +135,10 @@
       <file leaf-file-name="AccountInfo.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/AccountInfo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="8" selection-start="901" selection-end="901" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="43" column="166" selection-start="1260" selection-end="1260" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#21#35#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,9 +146,17 @@
       <file leaf-file-name="AccountInfo.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/AccountInfo.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="39" selection-start="1556" selection-end="1556" vertical-scroll-proportion="-18.307692">
+            <state line="69" column="109" selection-start="2894" selection-end="2894" vertical-scroll-proportion="-10.461538">
               <folding>
-                <element signature="n#style#0;n#button#0;n#p#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#fieldset#0;n#Form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#textarea#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#Form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#p#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#Form#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -164,7 +174,7 @@
       <file leaf-file-name="register.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/register.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="96" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0">
+            <state line="5" column="12" selection-start="133" selection-end="133" vertical-scroll-proportion="-3.2692308">
               <folding />
             </state>
           </provider>
@@ -188,20 +198,20 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/templates/register.html" />
         <option value="$PROJECT_DIR$/pages/__init__.py" />
         <option value="$PROJECT_DIR$/pages/signup.py" />
         <option value="$PROJECT_DIR$/pages/signout.py" />
         <option value="$PROJECT_DIR$/app.yaml" />
         <option value="$PROJECT_DIR$/templates/boilerplate.html" />
-        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/static/css/default.css" />
         <option value="$PROJECT_DIR$/templates/BaseLoggedIn.html" />
         <option value="$PROJECT_DIR$/pages/Scraper.py" />
         <option value="$PROJECT_DIR$/pages/Profile.py" />
         <option value="$PROJECT_DIR$/templates/Profile.html" />
+        <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/pages/AccountInfo.py" />
+        <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/templates/AccountInfo.html" />
         <option value="$PROJECT_DIR$/pages/base_handler.py" />
       </list>
@@ -506,7 +516,11 @@
       <created>1394903316156</created>
       <updated>1394903316156</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="added course adding and searching (not fully functional yet)">
+      <created>1394928006380</created>
+      <updated>1394928006380</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -582,7 +596,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="added account deletion" />
+    <option name="LAST_COMMIT_MESSAGE" value="added course adding and searching (not fully functional yet)" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -606,6 +620,7 @@
     <MESSAGE value="added viewing and editing personal information as well as authentication cookies" />
     <MESSAGE value="Changed Home to Profile" />
     <MESSAGE value="added account deletion" />
+    <MESSAGE value="added course adding and searching (not fully functional yet)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -617,7 +632,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="144" selection-start="75" selection-end="75" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="n#style#0;n#button#0;n#p#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#fieldset#0;n#Form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#Form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#p#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#Form#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -651,58 +674,16 @@
         <state line="5" column="6" selection-start="83" selection-end="83" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="62" selection-start="78" selection-end="78" vertical-scroll-proportion="-3.2692308" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/boilerplate.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="132" selection-start="1007" selection-end="1007" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/register.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="96" selection-start="350" selection-end="350" vertical-scroll-proportion="0.0">
+        <state line="5" column="12" selection-start="133" selection-end="133" vertical-scroll-proportion="-3.2692308">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/default.css">
+    <entry file="file://$PROJECT_DIR$/templates/home.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1840" column="10" selection-start="20195" selection-end="20204" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/AccountInfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="39" selection-start="1556" selection-end="1556" vertical-scroll-proportion="-18.307692">
-          <folding>
-            <element signature="n#style#0;n#button#0;n#p#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/AccountInfo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="8" selection-start="901" selection-end="901" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="55" selection-start="794" selection-end="826" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/BaseLoggedIn.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="38" selection-start="1037" selection-end="1037" vertical-scroll-proportion="-11.0">
+        <state line="8" column="26" selection-start="179" selection-end="179" vertical-scroll-proportion="0.16306955">
           <folding />
         </state>
       </provider>
@@ -714,9 +695,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/boilerplate.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="132" selection-start="1007" selection-end="1007" vertical-scroll-proportion="-7.730769">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="59" selection-start="1349" selection-end="1349" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/default.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1840" column="10" selection-start="20195" selection-end="20204" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/BaseLoggedIn.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="38" selection-start="1037" selection-end="1037" vertical-scroll-proportion="-11.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/AccountInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="109" selection-start="2894" selection-end="2894" vertical-scroll-proportion="-10.461538">
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#fieldset#0;n#Form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#Form#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#p#0;n#div#1;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#Form#0;n#div#2;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/AccountInfo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="166" selection-start="1260" selection-end="1260" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#21#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pages/base_handler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="47" selection-start="5179" selection-end="5179" vertical-scroll-proportion="0.6689576">
+        <state line="169" column="40" selection-start="6703" selection-end="6703" vertical-scroll-proportion="0.8052692">
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
