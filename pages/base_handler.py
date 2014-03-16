@@ -91,7 +91,7 @@ class BaseHandler(webapp2.RequestHandler):
                 self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=86400, overwrite=True) #remember to add secure=True when deploying
                 cur.execute("""UPDATE User SET SessionKey=%s WHERE Email=%s""", (sessionKey, email))
                 myDB.commit()
-                self.redirect('/accountinfo/' + sessionKey + '/')
+                self.redirect('/accountinfo/' + sessionKey + '/a/')
             else:
                 logging.info('Incorrect Email/Password')
                 self.render("home.html")
@@ -118,7 +118,7 @@ class BaseHandler(webapp2.RequestHandler):
 
         cur.execute("UPDATE User SET Name=%s, Major=%s, ClassStatus=%s, Gender=%s, Location=%s WHERE SessionKey=%s", (name, major, classStatus, gender, location, SK))
         myDB.commit()
-        self.redirect('/accountinfo/' + SK + '/4bvgh')
+        self.redirect('/accountinfo/' + SK + '/ /a')
 
     def deleteAccountPost(self):
         logging.info('account agreed to deletion')
@@ -138,39 +138,64 @@ class BaseHandler(webapp2.RequestHandler):
             self.redirect('/accountinfo/' + cookie + '/')
 
     def courseSearchPost(self):
+        logging.info('I get here')
         deptCode = self.request.get('departmentCode')
         courseNum = self.request.get('courseNumber')
+        logging.info(deptCode)
+        logging.info(courseNum)
 
         myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
                                user="akkowal2_drew", passwd="cs411sp14")
         cur = myDB.cursor()
         cookie = self.request.cookies.get('auth')
         try:
-            cur.execute("SELECT ClassID, ProfessorName FROM Class WHERE ClassDepartment=%s AND CourseNumber=%s", (deptCode, courseNum))
+            statement = "SELECT ClassID, ProfessorName FROM Class WHERE ClassDepartment='%s' AND CourseNumber=%s" % (deptCode, courseNum)
+            logging.info(statement)
+            cur.execute(statement)
+            results = ''
+
             for row in cur:
-                pass
-            self.redirect('/accountinfo/' + cookie)
+
+                results += str(row[0]) + row[1]
+
+
+            results = results.replace(' ', '').replace('\n', '').replace(',', '')
+
+            self.redirect('/accountinfo/' + cookie + '/' + results + '/')
         except:
+            logging.info('Problem with class search')
             myDB.rollback()
+            self.redirect('/accountinfo/' + cookie + '/ /')
 
     def addClassPost(self):
+        logging.info('hereasdfasd')
         myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
                                user="akkowal2_drew", passwd="cs411sp14")
         cur = myDB.cursor()
         classID = self.request.get('classID')
-        cur.execute("SELECT Email FROM User WHERE SessionKey=%s", (self.request.cookies.get('auth'),))
+        cookie = self.request.cookies.get('auth')
+        try:
+            cur.execute("SELECT Email FROM User WHERE SessionKey=%s", (cookie,))
+        except:
+            logging.info('ruh roh')
         email = None
         for row in cur:
             email = row[0]
 
+        logging.info('email' + email)
+
         try:
-            cur.execute("INSERT INTO UserClassList VALUES (%s, %s)", (email, classID))
+            statement = "INSERT INTO UserClassList VALUES ('%s', %s)" % (email, classID)
+            logging.info(statement)
+            cur.execute(statement)
             myDB.commit()
+            logging.info('here????')
+            self.redirect('/accountinfo/' + cookie + '/ /a')
         except:
             myDB.rollback()
+            self.redirect('/accountinfo/' + cookie + '/ /')
 
-
-    def post(self, SK=None, update=None):
+    def post(self, SK=None, results=None, update=None):
         if self.request.get('register'):
             self.registerPost()
         elif self.request.get('login'):
@@ -180,9 +205,9 @@ class BaseHandler(webapp2.RequestHandler):
         elif self.request.get('deleteAccount'):
             self.deleteAccountPost()
         elif self.request.get('courseSearch'):
-            pass
-            #self.courseSearchPost()
+            self.courseSearchPost()
         elif self.request.get('addClass'):
+            logging.info('please get here')
             self.addClassPost()
 
 

@@ -16,15 +16,16 @@ from pages import base_handler
 
 
 class AccountInfo(base_handler.BaseHandler):
-    def get(self, sessionkey, updated=None):
+    def get(self, sessionkey, results=None, updated=None):
         #args = self.request.get('args')
         logging.info("I GET HERE!")
         logging.info("Session Key: " + sessionkey)
+        logging.info('Updated: ' + str(updated))
+        logging.info('results: ' + str(results))
 
         myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
                                user="akkowal2_drew", passwd="cs411sp14")
         cur = myDB.cursor()
-
         cur.execute("SELECT * FROM User WHERE SessionKey=%s", (sessionkey,))
         userInfo = None
         for row in cur.fetchall():
@@ -42,5 +43,5 @@ class AccountInfo(base_handler.BaseHandler):
             update = True
 
         info = [['Email', userInfo[0]], ['Name', userInfo[1]], ['Major', userInfo[3]], ['Class Status', userInfo[4]], ['Gender', userInfo[5]], ['Location', userInfo[6]]]
-        context = {'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/', 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
+        context = {'searchResults': results, 'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
         self.render("AccountInfo.html", **context)

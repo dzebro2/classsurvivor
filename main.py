@@ -33,7 +33,7 @@ class MainHandler(RequestHandler):
             self.redirect('/home')
         else:
             logging.info('Auth Cookie: ' + str(auth_cookie))
-            self.redirect('/accountinfo/' + str(auth_cookie) + '/a/')
+            self.redirect('/accountinfo/' + str(auth_cookie) + '/ /')
 
 
 
@@ -41,6 +41,6 @@ app = WSGIApplication([
                                   (r'/', MainHandler),
                                   (r'/home', home.Home),
                                   (r'/register', signup.Sign),
-                                  (r'/accountinfo/(.*)/(.*)', AccountInfo.AccountInfo),
+                                  (r'/accountinfo/(.*)/(.*)/(.*)', AccountInfo.AccountInfo),
                                     (r'/signout/(.*)', signout.signout)
                               ], debug=True)
