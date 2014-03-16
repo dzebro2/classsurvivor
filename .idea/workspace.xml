@@ -6,7 +6,7 @@
     </list>
     <ignored path="classsurvivor.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394990497870" ignored="false" />
+    <file path="/Dummy.txt" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394990611122" ignored="false" />
     <file path="/signup.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1393883409039" ignored="false" />
     <file path="/register.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1393551672342" ignored="false" />
     <file path="/main.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1394918133681" ignored="false" />
@@ -121,10 +121,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base_handler.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="base_handler.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/base_handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="49" selection-start="4291" selection-end="4291" vertical-scroll-proportion="0.0">
+            <state line="93" column="64" selection-start="3678" selection-end="3678" vertical-scroll-proportion="0.7079038">
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -132,10 +132,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountInfo.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="AccountInfo.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/AccountInfo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="121" selection-start="1496" selection-end="1496" vertical-scroll-proportion="0.6523256">
+            <state line="45" column="121" selection-start="1496" selection-end="1496" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -200,8 +200,8 @@
         <option value="$PROJECT_DIR$/templates/home.html" />
         <option value="$PROJECT_DIR$/templates/AccountInfo.html" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/pages/base_handler.py" />
         <option value="$PROJECT_DIR$/pages/AccountInfo.py" />
+        <option value="$PROJECT_DIR$/pages/base_handler.py" />
       </list>
     </option>
   </component>
@@ -512,7 +512,11 @@
       <created>1394990501249</created>
       <updated>1394990501249</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="forgot one detail">
+      <created>1394990615010</created>
+      <updated>1394990615010</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -588,7 +592,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="added course adding and searching" />
+    <option name="LAST_COMMIT_MESSAGE" value="forgot one detail" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -614,6 +618,7 @@
     <MESSAGE value="added account deletion" />
     <MESSAGE value="added course adding and searching (not fully functional yet)" />
     <MESSAGE value="added course adding and searching" />
+    <MESSAGE value="forgot one detail" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -697,13 +702,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="67" selection-start="1085" selection-end="1085" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/AccountInfo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="34" column="21" selection-start="1352" selection-end="1352" vertical-scroll-proportion="14.923077">
@@ -711,19 +709,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/base_handler.py">
+    <entry file="file://$PROJECT_DIR$/pages/AccountInfo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="49" selection-start="4291" selection-end="4291" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
+        <state line="45" column="121" selection-start="1496" selection-end="1496" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/AccountInfo.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="121" selection-start="1496" selection-end="1496" vertical-scroll-proportion="0.6523256">
+        <state line="35" column="67" selection-start="1085" selection-end="1085" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/base_handler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="64" selection-start="3678" selection-end="3678" vertical-scroll-proportion="0.7079038">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

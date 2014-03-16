@@ -91,7 +91,7 @@ class BaseHandler(webapp2.RequestHandler):
                 self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=86400, overwrite=True) #remember to add secure=True when deploying
                 cur.execute("""UPDATE User SET SessionKey=%s WHERE Email=%s""", (sessionKey, email))
                 myDB.commit()
-                self.redirect('/accountinfo/' + sessionKey + '/a/')
+                self.redirect('/accountinfo/' + sessionKey + '/ /')
             else:
                 logging.info('Incorrect Email/Password')
                 self.render("home.html")
