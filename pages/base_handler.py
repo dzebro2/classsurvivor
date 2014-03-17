@@ -111,6 +111,8 @@ class BaseHandler(webapp2.RequestHandler):
             name = None
         if classStatus == "":
             classStatus = None
+        if major == "":
+            major = None
         if gender == "":
             gender = None
         if location == "":
@@ -143,29 +145,8 @@ class BaseHandler(webapp2.RequestHandler):
         courseNum = self.request.get('courseNumber')
         logging.info(deptCode)
         logging.info(courseNum)
-
-        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
-                               user="akkowal2_drew", passwd="cs411sp14")
-        cur = myDB.cursor()
         cookie = self.request.cookies.get('auth')
-        try:
-            statement = "SELECT ClassID, ProfessorName FROM Class WHERE ClassDepartment='%s' AND CourseNumber=%s" % (deptCode, courseNum)
-            logging.info(statement)
-            cur.execute(statement)
-            results = ''
-
-            for row in cur:
-
-                results += str(row[0]) + row[1]
-
-
-            results = results.replace(' ', '').replace('\n', '').replace(',', '')
-
-            self.redirect('/accountinfo/' + cookie + '/' + results + '/')
-        except:
-            logging.info('Problem with class search')
-            myDB.rollback()
-            self.redirect('/accountinfo/' + cookie + '/ /')
+        self.redirect('/accountinfo/' + cookie + '/' + deptCode + '&' + courseNum + '/')
 
     def addClassPost(self):
         logging.info('hereasdfasd')

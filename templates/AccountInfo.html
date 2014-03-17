@@ -31,9 +31,22 @@
                     <br><p style="text-align: center;"><input type="submit" name="CSubmit" value="Submit"></p>
                 </fieldset>
             </Form>
-            <textarea readonly style="width:100%; max-height: 100%; max-width: 100%;">
-                {{searchResults}}
-            </textarea>
+            <table style="width:400px; margin-right:300px; border: 1px solid black; border-collapse: collapse;">
+
+
+                <tr>
+                    <td><b> ClassID </b></td>
+                    <td><b> College </b></td>
+                    <td><b> Course Number </b></td>
+                    <td><b> Professor Name </b></td>
+                </tr>
+                {% for row in searchResults %}
+                <tr>
+                    <td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td><td>{{row[3]}}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
         </div>
 
         <div align="left" style="float:left; margin-left:auto; width:30%;">

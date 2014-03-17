@@ -17,12 +17,12 @@
         <fieldset>
             {% for info in infoList %}
                 {% if not info[1]: %}
-                    <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="" name="{{ info[0] }}" style="border:0px;">
+                    <label for={{ info[1] }}>{{ info[0] }}: </label><input readonly type='text' value="" name="{{ info[0] }}" style="border:0px;">
                 {% else: %}
                     {% if info[0] == 'Email': %}
-                        <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' readonly value="{{ info[1] }}" name="{{ info[0] }}" style="border:0px;">
+                        <label for={{ info[1] }}>{{ info[0] }}: </label><input readonly type='text' readonly value="{{ info[1] }}" name="{{ info[0] }}" style="border:0px;">
                     {% else: %}
-                        <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="{{ info[1] }}" name="{{ info[0] }}" style="border:0px;">
+                        <label for={{ info[1] }}>{{ info[0] }}: </label><input readonly type='text' value="{{ info[1] }}" name="{{ info[0] }}" style="border:0px;">
                     {% endif %}
 
 

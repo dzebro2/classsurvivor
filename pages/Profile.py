@@ -48,6 +48,6 @@ class Profile(base_handler.BaseHandler):
             for row in cur.fetchall():
                 classes.append(row)
         
-        info = [['Email', userInfo[0]], ['Name', userInfo[1]], ['Class Status', userInfo[3]], ['Gender', userInfo[4]], ['Location', userInfo[5]]]
-        context = {'classes': classes, 'time': str(date.today()), 'accountInfo': '/accountInfo/' + sessionkey + '/ /','profile': '/profile/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
+        info = [['Email', userInfo[0]], ['Name', userInfo[1]], ['Major', userInfo[3]], ['Class Status', userInfo[4]], ['Gender', userInfo[5]], ['Location', userInfo[6]]]
+        context = {'classes': classes, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'profile': '/profile/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
         self.render("Profile.html", **context)
