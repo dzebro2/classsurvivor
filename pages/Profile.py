@@ -35,10 +35,25 @@ class Profile(base_handler.BaseHandler):
         if userInfo is None or sessionkey == 'NULL':
             self.redirect('/home')
             return
+        logging.info(userInfo[0])
+        statement = "SELECT ClassID FROM UserClassList WHERE email='%s'" % (userInfo[0],)
+        cur.execute(statement)
+        ids = []
+        for row in cur.fetchall():
+            logging.info("here")
+            ids.append(row)
 
+        logging.info(ids)
+        classes = []
+        for idi in ids:
+            cur.execute("SELECT ClassDepartment,CourseNumber,ClassName FROM Class WHERE ClassID=%i" % idi)
+            for row in cur.fetchall():
+                classes.append(row)
+
+        logging.info(classes)
         #cur.execute("SELECT * FROM User")
         #logging.info("User Information: " + str(userInfo))
         
         info = [['Email', userInfo[0]], ['Name', userInfo[1]], ['Class Status', userInfo[3]], ['Gender', userInfo[4]], ['Location', userInfo[5]]]
-        context = {'time': str(date.today()), 'accountInfo': '/accountInfo/' + sessionkey + '/ /','profile': '/profile/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
+        context = {'classes': classes, 'time': str(date.today()), 'accountInfo': '/accountInfo/' + sessionkey + '/ /','profile': '/profile/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
         self.render("Profile.html", **context)

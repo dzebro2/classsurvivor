@@ -46,30 +46,30 @@
         <h3> My Groups</h3>
     </div>
     <div style="width:300px; float:left; margin-left:150px;">
-    <table style="width:300px; margin-right:300px; border: 1px solid black; border-collapse: collapse;">
+    <table style="width:400px; margin-right:300px; border: 1px solid black; border-collapse: collapse;">
         
 
     <tr> 
       <td><b> College </b></td>        
       <td><b> Course Number </b></td>
+      <td><b> Class Name </b></td>
     </tr>
-    <tr>
-      <td>{{infoList[0][1]}}</td>      
-      <td>94</td>
-    </tr>
+    {% for row in classes %}
+            <tr>
+                <td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td>
+            </tr>
+    {% endfor %}
     
     </table>
 </div>
 <div style="width:300px; float:left; margin-left:150px;">
     <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
     <tr> 
-      <td><b> College </b></td>        
+      <td><b> Group Name </b></td>        
       <td><b> Course Number </b></td>
+
     </tr>
-    <tr>
-      <td>CS</td>      
-      <td>94</td>
-    </tr>
+   
     
     </table>
 </div>
