@@ -40,5 +40,5 @@ class Profile(base_handler.BaseHandler):
         #logging.info("User Information: " + str(userInfo))
         
         info = [['Email', userInfo[0]], ['Name', userInfo[1]], ['Class Status', userInfo[3]], ['Gender', userInfo[4]], ['Location', userInfo[5]]]
-        context = {'time': str(date.today()), 'accountInfo': '/accountInfo/' + sessionkey + '/','profile': '/profile/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
+        context = {'time': str(date.today()), 'accountInfo': '/accountInfo/' + sessionkey + '/ /','profile': '/profile/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
         self.render("Profile.html", **context)

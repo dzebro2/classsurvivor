@@ -1615,7 +1615,7 @@ hr
 .title
 {
 	border-bottom: solid 1px #dbdbdb;
-	margin: 0 0 3em 0;
+	margin: 0 0 0 0;
 	text-align: center;
 }
 
@@ -2022,7 +2022,11 @@ ul.contact li a.icon-rss:before
 }
 
 /** SIDEBAR */
-
+td
+{
+	border-collapse: collapse;
+	border: 1px solid black;
+}
 #sidebar
 {
 	float: right;
@@ -2032,8 +2036,27 @@ ul.contact li a.icon-rss:before
 #lsidebar
 {
 	float: left;
-	width: 320px;
+	width: 30%;
+	margin-left:150px;
 }
+
+#lsidebar3
+{
+	float: left;
+	width: 30%;
+	height: 200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#lsidebar2
+{
+	float: left;
+	width: 30%;
+	margin:auto;
+}
+
+
 
 #sbox1
 {

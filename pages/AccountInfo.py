@@ -43,5 +43,5 @@ class AccountInfo(base_handler.BaseHandler):
             update = True
 
         info = [['Email', userInfo[0]], ['Name', userInfo[1]], ['Major', userInfo[3]], ['Class Status', userInfo[4]], ['Gender', userInfo[5]], ['Location', userInfo[6]]]
-        context = {'searchResults': results, 'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
+        context = {'profile': '/profile/' + sessionkey, 'searchResults': results, 'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[1], 'infoList': info}
         self.render("AccountInfo.html", **context)

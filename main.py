@@ -42,5 +42,6 @@ app = WSGIApplication([
                                   (r'/home', home.Home),
                                   (r'/register', signup.Sign),
                                   (r'/accountinfo/(.*)/(.*)/(.*)', AccountInfo.AccountInfo),
-                                    (r'/signout/(.*)', signout.signout)
+                                  (r'/profile/(.*)', Profile.Profile),
+                                  (r'/signout/(.*)', signout.signout)
                               ], debug=True)

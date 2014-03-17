@@ -3,5 +3,6 @@ __all__ = [
     "home",
     "signup",
     "AccountInfo",
+    "Profile",
     "signout"
 ]
