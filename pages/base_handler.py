@@ -88,7 +88,7 @@ class BaseHandler(webapp2.RequestHandler):
                 loggedIn = email
                 logging.info(loggedIn + " is logged in!")
                 sessionKey = hashlib.sha256(str(email)+str(self.request.remote_addr)+str(passW)+str(time.time())).hexdigest()
-                self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=86400, overwrite=True) #remember to add secure=True when deploying
+                self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=86400, overwrite=True, secure=True) #remember to add secure=True when deploying
                 cur.execute("""UPDATE User SET SessionKey=%s WHERE Email=%s""", (sessionKey, email))
                 myDB.commit()
                 self.redirect('/accountinfo/' + sessionKey + '/ /')
