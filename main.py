@@ -23,6 +23,8 @@ import jinja2
 import json
 
 from pages import *
+for p in ["MySql-python-1.2.5.zip"]:
+  sys.path.insert(0, p)
 
 
 class MainHandler(RequestHandler):
