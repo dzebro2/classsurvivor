@@ -10,6 +10,8 @@ import uuid
 import time
 import datetime
 from webapp2_extras import sessions
+import zlib
+#from google.appengine.api import rdbms
 
 template_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates')
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
@@ -18,6 +20,7 @@ jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir),
 
 class BaseHandler(webapp2.RequestHandler):
     loggedIn = None
+
     def render_str(self, template, **params):
         t = jinja_env.get_template(template)
         return t.render(params)
@@ -57,7 +60,11 @@ class BaseHandler(webapp2.RequestHandler):
                 except:
                     myDB.rollback()
 
-                self.redirect('/register')
+                sessionKey = hashlib.sha256(str(email)+str(self.request.remote_addr)+str(self.request.get('RPassword'))+str(time.time())).hexdigest()
+                self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=86400, overwrite=True) #remember to add secure=True when deploying
+                cur.execute("""UPDATE User SET SessionKey=%s WHERE Email=%s""", (sessionKey, email))
+                myDB.commit()
+                self.redirect('/accountinfo/' + sessionKey + '/ /')
             else:
                 self.redirect('/home')
         else:
@@ -73,8 +80,9 @@ class BaseHandler(webapp2.RequestHandler):
         email = self.request.get('Lemail')
 
         logging.info("email: " + email)
-
-        cur.execute("SELECT Password FROM User WHERE Email=%s", email)
+        statement = "SELECT Password FROM User WHERE Email='%s'" % (email,)
+        logging.info(statement)
+        cur.execute(statement)
         if not cur.fetchall():
             logging.info('Incorrect Email/Password')
             self.render("home.html")
@@ -88,7 +96,7 @@ class BaseHandler(webapp2.RequestHandler):
                 loggedIn = email
                 logging.info(loggedIn + " is logged in!")
                 sessionKey = hashlib.sha256(str(email)+str(self.request.remote_addr)+str(passW)+str(time.time())).hexdigest()
-                self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=86400, overwrite=True, secure=True) #remember to add secure=True when deploying
+                self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=86400, overwrite=True) #remember to add secure=True when deploying
                 cur.execute("""UPDATE User SET SessionKey=%s WHERE Email=%s""", (sessionKey, email))
                 myDB.commit()
                 self.redirect('/accountinfo/' + sessionKey + '/ /')
@@ -176,6 +184,26 @@ class BaseHandler(webapp2.RequestHandler):
             myDB.rollback()
             self.redirect('/accountinfo/' + cookie + '/ /')
 
+    def uploadPicPost(self):
+
+
+        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+                               user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        picture = self.request.get('uploadButton')
+
+
+        cookie = self.request.cookies.get('auth')
+        try:
+            cur.execute("UPDATE User SET ProfilePic=%s WHERE SessionKey=%s", (picture, cookie))
+            myDB.commit()
+        except:
+            logging.info('uploading picture problem!')
+            myDB.rollback()
+
+        self.redirect('/profile/' + cookie)
+
     def post(self, SK=None, results=None, update=None):
         if self.request.get('register'):
             self.registerPost()
@@ -190,5 +218,7 @@ class BaseHandler(webapp2.RequestHandler):
         elif self.request.get('addClass'):
             logging.info('please get here')
             self.addClassPost()
+        elif self.request.get('picUpload'):
+            self.uploadPicPost()
 
 

@@ -1,18 +1,46 @@
 {% extends "boilerplate.html" %}
 {% block bodyblock %}
+<script>
+    function changeInput(login){
+        if (login == true){
+            document.getElementById('loginArea').innerHTML = '<div class="container"><div class="row"><div class="col-sm-6 col-md-4 col-md-offset-4"><h1 class="text-center login-title">Sign in!</h1><div class="account-wall"><img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"alt=""><form class="form-signin" method="post"><input type="text" class="form-control" placeholder="Email" required autofocus name="Lemail"><input type="password" class="form-control" placeholder="Password" required name="Lpassword"><input type="hidden" name="login" value="login"><button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: deepskyblue;">Sign in</button><label class="checkbox pull-left"><input type="checkbox" value="remember-me">Remember me</label><span class="clearfix"></span></form></div></div></div></div>';
+            document.getElementById('registrationArea').innerHTML = '';
+        }
+        else{
+            document.getElementById('loginArea').innerHTML = '';
+            document.getElementById('registrationArea').innerHTML = '<div class="container" style="float: left;"><div class="row"><div class="col-sm-6 col-md-4 col-md-offset-4"><h1 class="text-center login-title">Register for Class Survivor! It\'s Free!</h1><div class="account-wall"><img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"alt=""><form class="form-signin" method="post"><input type="text" class="form-control" placeholder="Name" required name="RName"><input type="text" class="form-control" placeholder="Email" required name="REmail"><input type="password" class="form-control" placeholder="Password" required name="RPassword"><input type="password" class="form-control" placeholder="Confirm Password" required name="RConfirmPassword"><input type="hidden" name="register" value="register"><button class="btn btn-lg btn-primary btn-block" type="submit">Register</button><label class="checkbox pull-left"><input type="checkbox" value="remember-me">Remember me</label><span class="clearfix"></span></form></div></div></div></div>';
+        }
+    }
+
+</script>
 
 
-
-  <div id="wrapper">
+<div id="wrapper">
     <div id="welcome" class="wrapper-style1">
         <div class="title">
             <h2>Welcome to Class Survivor</h2>
-            <span class="byline"></span> </div>
+        </div>
+
+        <br/>
+        <div class="btn-group">
+            <input name="group1" type="radio" checked onclick="changeInput(true)">Login
+            <input name="group1" type="radio" onclick="changeInput(false)">Register
+        </div>
+        <div id="loginArea">
+            <div class="container"><div class="row"><div class="col-sm-6 col-md-4 col-md-offset-4"><h1 class="text-center login-title">Sign in!</h1><div class="account-wall"><img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"alt=""><form class="form-signin" method="post"><input type="text" class="form-control" placeholder="Email" required autofocus name="Lemail"><input type="password" class="form-control" placeholder="Password" required name="Lpassword"><input type="hidden" name="login" value="login"><button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: deepskyblue;">Sign in</button><label class="checkbox pull-left"><input type="checkbox" value="remember-me">Remember me</label><span class="clearfix"></span></form></div></div></div></div>
+        </div>
+        <div id="registrationArea">
+
+        </div>
+
+
 
     </div>
-  </div>
+</div>
 
-  <div id="footer" class="container">
+
+
+<div id="footer" class="container">
     <div>
         <div>
             <h2>Get in touch</h2>
@@ -27,7 +55,7 @@
     </div>
     <p>&copy; 2014 Class-Survivor.com. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>.</p>
 </div>
-  
+
 {% endblock %}
 
 {% block jsblock %}

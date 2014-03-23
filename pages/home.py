@@ -9,9 +9,12 @@ from pages import base_handler
 
 
 class Home(base_handler.BaseHandler):
-    def get(self):
-        self.render("home.html")
+    EMAIL_RE = re.compile(r'^[\S]+@[\S]+\.[\S]+$')
 
-        #def post(self):
-        #does nothing right now
-        #would look like self.render("home.html", stuff we want to put on the page)
+    def valid_email(self, email):
+        return self.EMAIL_RE.match(email)
+
+    def get(self):
+        questions = ["Name", "Email", "Password", "ConfirmPassword"]
+        context = {'qList': questions}
+        self.render("home.html", **context)
