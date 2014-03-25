@@ -24,7 +24,7 @@
                     <label for={{ info[1] }}>{{ info[0] }}: </label><input readonly type='text' value="" name="{{ info[0] }}" style="border:0px;">
                 {% else: %}
                     {% if info[0] == 'Email': %}
-                        <label for={{ info[1] }}>{{ info[0] }}: </label><input readonly type='text' readonly value="{{ info[1] }}" name="{{ info[0] }}" style="border:0px;">
+                        <label for={{ info[1] }}>{{ info[0] }}: </label><input readonly type='text' readonly value="{{ info[1] }}" name="{{ info[0] }}" size="30" style="border:0px;">
                     {% else: %}
                         <label for={{ info[1] }}>{{ info[0] }}: </label><input readonly type='text' value="{{ info[1] }}" name="{{ info[0] }}" style="border:0px;">
                     {% endif %}
@@ -53,14 +53,16 @@
     <table style="width:400px; margin-right:300px; border: 1px solid black; border-collapse: collapse;">
         
 
-    <tr> 
+    <tr>
+      <td><b>  </b></td>
       <td><b> College </b></td>        
       <td><b> Course Number </b></td>
       <td><b> Class Name </b></td>
+      <td><b> Professor </b></td>
     </tr>
     {% for row in classes %}
             <tr>
-                <td>{{row[0]}}</td><td>{{row[1]}}</td><td>{{row[2]}}</td>
+                <td><Form method="post"><input type="hidden" name="deleteClass" value="deleteClass"><input type="hidden" name="delete" value="{{row[0]}} {{row[1]}} {{row[3]}}"><input type="submit" value="X" style="background-color: black; color: red;"></Form></td><td>{{row[0]}}</td><td>{{row[1]}}</td><td><a style="color: blue; text-decoration: underline;" href="/class/{{row[4]}}">{{row[2]}}</a></td><td>{{row[3]}}</td>
             </tr>
     {% endfor %}
     

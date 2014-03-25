@@ -1,6 +1,5 @@
 {% extends "BaseLoggedIn.html" %}
 {% block bodyblock %}
-
 <script>
     function confirmDelete(){
 
@@ -11,8 +10,8 @@
             document.getElementById("deleteForm").submit();
         }
     }
-</script>
 
+</script>
 <div id="wrapper">
     <div id="welcome" class="wrapper-style1">
         <div class="title">
@@ -24,13 +23,16 @@
         <div class="container">
         <div align="left" style="float:left; margin-right:auto; width:30%;">
             <Form method="post">
+
                 <fieldset>
                     <label for="DepartCode">Department Code: </label><input type='text' value="" name="departmentCode">
                     <label for="CourseNum">Course Number: </label><input type='text' value="" name="courseNumber">
                     <input type="hidden" name="courseSearch" value="courseSearch">
                     <br><p style="text-align: center;"><input type="submit" name="CSubmit" value="Submit"></p>
                 </fieldset>
+
             </Form>
+
             <table style="width:400px; margin-right:300px; border: 1px solid black; border-collapse: collapse;">
 
 
@@ -47,6 +49,7 @@
                 {% endfor %}
 
             </table>
+
         </div>
 
         <div align="left" style="float:left; margin-left:auto; width:30%;">
@@ -114,4 +117,5 @@
 {% endblock %}
 
 {% block jsblock %}
+
 {% endblock %}

@@ -185,8 +185,6 @@ class BaseHandler(webapp2.RequestHandler):
             self.redirect('/accountinfo/' + cookie + '/ /')
 
     def uploadPicPost(self):
-
-
         myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
                                user="akkowal2_drew", passwd="cs411sp14")
         cur = myDB.cursor()
@@ -204,6 +202,54 @@ class BaseHandler(webapp2.RequestHandler):
 
         self.redirect('/profile/' + cookie)
 
+    def deleteClassPost(self):
+        logging.info('delete class: ' + self.request.get('delete'))
+        delClass = self.request.get('delete')
+
+        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+                               user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+        firstSpace = delClass.find(' ')
+        secondSpace = delClass.find(' ', firstSpace+1)
+        logging.info('firstSpace: ' + str(firstSpace))
+        logging.info('secondSpace: ' + str(secondSpace))
+        deptName = delClass[0:firstSpace]
+        logging.info('deptName: ' + deptName)
+
+        courseNum = delClass[firstSpace+1:secondSpace]
+        logging.info('courseNum: ' + str(courseNum))
+
+        profName = delClass[secondSpace+1:]
+        logging.info('professorName: ' + profName)
+        sessionKey = self.request.cookies.get('auth')
+
+        cur.execute("SELECT Email FROM User WHERE SessionKey='%s'" % sessionKey)
+
+        email = ''
+
+        for row in cur.fetchall():
+            email = row[0]
+
+        logging.info('got email: ' + email)
+
+        cur.execute("SELECT ClassID FROM Class WHERE ClassDepartment='%s' AND CourseNumber=%i AND ProfessorName='%s'" % (deptName, int(courseNum), profName))
+
+        courseID = -1
+        for row in cur.fetchall():
+            courseID = int(row[0])
+
+        logging.info('got course id: ' + str(courseID))
+        statement = "DELETE FROM UserClassList WHERE Email='%s' AND ClassID=%i" % (email, courseID)
+        logging.info(statement)
+        try:
+            cur.execute(statement)
+            myDB.commit()
+        except:
+            logging.info('could not delete class')
+            myDB.rollback()
+
+        self.redirect('/profile/' + sessionKey)
+
     def post(self, SK=None, results=None, update=None):
         if self.request.get('register'):
             self.registerPost()
@@ -220,5 +266,7 @@ class BaseHandler(webapp2.RequestHandler):
             self.addClassPost()
         elif self.request.get('picUpload'):
             self.uploadPicPost()
+        elif self.request.get('deleteClass'):
+            self.deleteClassPost()
 
 

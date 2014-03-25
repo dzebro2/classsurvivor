@@ -25,7 +25,7 @@ class AccountInfo(base_handler.BaseHandler):
         logging.info('results: ' + str(results))
 
         myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
-                               user="akkowal2_drew", passwd="cs411sp14")
+                                         user="akkowal2_drew", passwd="cs411sp14")
         cur = myDB.cursor()
         cur.execute("SELECT * FROM User WHERE SessionKey=%s", (sessionkey,))
         userInfo = None
@@ -43,6 +43,7 @@ class AccountInfo(base_handler.BaseHandler):
             update = True
 
         classes = []
+        departments = []
 
         if not results:
             results = []
@@ -63,14 +64,20 @@ class AccountInfo(base_handler.BaseHandler):
 
                 for row in cur:
                     classes.append(row)
-
-
-
             except:
                 classes = []
 
+        statement = "SELECT ClassDepartment FROM Class"
+        cur.execute(statement)
+
+        for row in cur.fetchall():
+            if row[0] not in departments:
+                departments.append(row[0])
+        departments.sort()
+        logging.info(departments)
 
 
         info = [['Email', userInfo[1]], ['Name', userInfo[2]], ['Major', userInfo[4]], ['Class Status', userInfo[5]], ['Gender', userInfo[6]], ['Location', userInfo[7]]]
-        context = {'profile': '/profile/' + sessionkey, 'searchResults': classes, 'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
+        context = {'departments': departments, 'profile': '/profile/' + sessionkey, 'searchResults': classes, 'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
         self.render("AccountInfo.html", **context)
+

@@ -46,7 +46,7 @@ class Profile(base_handler.BaseHandler):
 
         classes = []
         for idi in ids:
-            cur.execute("SELECT ClassDepartment,CourseNumber,ClassName FROM Class WHERE ClassID=%i" % idi)
+            cur.execute("SELECT ClassDepartment,CourseNumber,ClassName,ProfessorName,ClassID FROM Class WHERE ClassID=%i" % idi)
             for row in cur.fetchall():
                 classes.append(row)
         statement = "SELECT ProfilePic FROM User WHERE email='%s'" % userInfo[1]

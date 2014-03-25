@@ -4,5 +4,6 @@ __all__ = [
     "signup",
     "AccountInfo",
     "Profile",
-    "signout"
+    "signout",
+    "ClassPage"
 ]
