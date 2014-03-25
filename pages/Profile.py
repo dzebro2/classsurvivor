@@ -57,10 +57,14 @@ class Profile(base_handler.BaseHandler):
             #logging.info(row)
             #logging.info(row[0])
             profilePic = row[0]
-            if profilePic is not None:
+            try:
+                test = len(profilePic)
                 profilePic = base64.b64encode(profilePic)
-            else:
+            except:
                 profilePic = 'default'
+
+            logging.info(profilePic)
+
 
 
         if not profilePic:
