@@ -9,7 +9,11 @@
         </div>
         <div id="page" class="container">
             <div id="lsidebar">
-                <img src="data:image/jpeg;base64,{{ profilePic }}" height="200" width="200"><br><br>
+                {% if profilePic == 'default': %}
+                    <img src="data:image/jpeg;base64,{{ profilePic }}" height="200" width="200"><br><br>
+                {% else: %}
+                    <img src="../../static/images/default_profile_pic.jpg" height="200" width="200"><br><br>
+                {% endif %}
                 <Form method="post" enctype="multipart/form-data">
                     <input type="File" name="uploadButton">
                     <input type="hidden" name="picUpload" value="picUpload">

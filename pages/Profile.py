@@ -52,16 +52,20 @@ class Profile(base_handler.BaseHandler):
         statement = "SELECT ProfilePic FROM User WHERE email='%s'" % userInfo[1]
         logging.info(statement)
         cur.execute(statement)
-        profilePic = None
+        profilePic = 'default'
         for row in cur.fetchall():
             #logging.info(row)
             #logging.info(row[0])
             profilePic = row[0]
-            profilePic = base64.b64encode(profilePic)
+            if profilePic is not None:
+                profilePic = base64.b64encode(profilePic)
+            else:
+                profilePic = 'default'
 
 
         if not profilePic:
-            profilePic = '../../static/images/default_profile_pic.jpg'
+            #profilePic = '../../static/images/default_profile_pic.jpg'
+            pass
         else:
             fileName = 'user.jpg'
             #profilePic = zlib.decompress(profilePic)
