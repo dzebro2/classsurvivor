@@ -16,7 +16,7 @@ import copy
 from pages import base_handler
 
 
-class ClassPage(base_handler.BaseHandler):
+class CreateGroup(base_handler.BaseHandler):
     def get(self, courseID):
         logging.info('courseInfo: ' + courseID)
         sessionkey = self.request.cookies.get('auth')
@@ -41,12 +41,6 @@ class ClassPage(base_handler.BaseHandler):
             className = row[0]
             professorName = row[1]
 
-        cur.execute("SELECT Name,Size,privacy,IDNumber FROM Groups WHERE ClassID=%i" % (int(courseID),))
-        groups = []
-        for row in cur.fetchall():
-            if row[2] == 0:
-                groups.append(row)
-
-        context = {'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
-        self.render("Class.html", **context)
+        context = {'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
+        self.render("CreateGroup.html", **context)
 

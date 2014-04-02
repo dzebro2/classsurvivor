@@ -250,6 +250,98 @@ class BaseHandler(webapp2.RequestHandler):
 
         self.redirect('/profile/' + sessionKey)
 
+    def createGroupPost(self):
+        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+                               user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        classID = self.request.get('createGroup')
+        sessionKey = self.request.cookies.get('auth')
+        groupName = self.request.get('groupName')
+        groupSize = self.request.get('groupSize')
+        privacy = self.request.get('privacy')
+        priv = 0
+        if privacy == 'privacy':
+            priv = 1
+        else:
+            priv = 0
+
+        cur.execute("SELECT Email FROM User WHERE SessionKey='%s'" % sessionKey)
+
+        email = ''
+
+        for row in cur.fetchall():
+            email = row[0]
+
+
+        #logging.info(statement)
+        try:
+            cur.execute("INSERT INTO Groups (ClassID, LeaderEmail, Name, Size, privacy) VALUES (%i, '%s', '%s', %i, %i)" % (int(classID), email, groupName, int(groupSize), priv))
+            myDB.commit()
+        except:
+            myDB.rollback()
+
+        self.redirect('/class/' + classID)
+
+    def commentPostParent(self):
+        logging.info('do i get hereeeeeeeee')
+        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+                               user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        content = self.request.get('comment')
+        sessionKey = self.request.cookies.get('auth')
+        groupID = self.request.get('postCommentParent')
+        parentID = 0
+        cur.execute("SELECT Email FROM User WHERE SessionKey='%s'" % sessionKey)
+
+        email = ''
+
+        for row in cur.fetchall():
+            email = row[0]
+
+        try:
+            statement = "INSERT INTO Comments (GroupID, ParentID, Content, PosterEmail) VALUES (%i, %i, '%s', '%s')" % (int(groupID), int(parentID), content, email)
+            logging.info(statement)
+            cur.execute(statement)
+            myDB.commit()
+        except:
+            myDB.rollback()
+
+        self.redirect('/group/' + groupID)
+
+    def commentPostReply(self):
+        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+                               user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        content = self.request.get('comment')
+        sessionKey = self.request.cookies.get('auth')
+        parentID = self.request.get('postCommentReply')
+
+        cur.execute("SELECT Email FROM User WHERE SessionKey='%s'" % sessionKey)
+        email = ''
+
+        for row in cur.fetchall():
+            email = row[0]
+
+        cur.execute("SELECT GroupID FROM Comments WHERE CommentID=%i" % (int(parentID),))
+        groupID = None
+        for row in cur.fetchall():
+            groupID = row[0]
+
+        try:
+            cur.execute("INSERT INTO Comments (GroupID, ParentID, Content, PosterEmail) VALUES (%i, %i, '%s', '%s')" % (int(groupID), int(parentID), content, email))
+            myDB.commit()
+        except:
+            myDB.rollback()
+
+        self.redirect('/group/' + str(groupID))
+
+
+
+
+
     def post(self, SK=None, results=None, update=None):
         if self.request.get('register'):
             self.registerPost()
@@ -268,5 +360,11 @@ class BaseHandler(webapp2.RequestHandler):
             self.uploadPicPost()
         elif self.request.get('deleteClass'):
             self.deleteClassPost()
+        elif self.request.get('createGroup'):
+            self.createGroupPost()
+        elif self.request.get('postCommentParent'):
+            self.commentPostParent()
+        elif self.request.get('postCommentReply'):
+            self.commentPostReply()
 
 

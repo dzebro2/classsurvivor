@@ -1,0 +1,109 @@
+{% extends "BaseLoggedIn.html" %}
+{% block bodyblock %}
+
+<div id="wrapper">
+    <div id="welcome" class="wrapper-style1">
+        <div class="title">
+            <h2>{% print groupName %}</h2>
+            <h4>{% print className + ' with ' + professorName %}</h4>
+            <span class="byline"></span>
+        </div>
+        <div id="page" class="container">
+            <div id="lsidebar4">
+                <p><b>Description:</b></p>
+                <p>ajsdklfja skldjfaksj dfkla jsdklfjaks ldjfa klsdjfklasdj fkl sdfaksjdfkl;ajsdkl;fjaklsdjfk; lajsdkf asd fasd </p>
+                <br/>
+                <p><b>Members:</b></p>
+                <table align="center" style="width:30%; border: 1px solid black; border-collapse: collapse;">
+                    <tr>
+                        <td><b>Name</b></td>
+                        <td><b>Email</b></td>
+                    </tr>
+
+                     <tr>
+                         <td>Joseph</td>
+                         <td>T@T.com</td>
+                     </tr>
+                    <tr>
+                        <td>Joseph</td>
+                        <td>T@T.com</td>
+                    </tr>
+                    <tr>
+                        <td>Joseph</td>
+                        <td>T@T.com</td>
+                    </tr>
+                    <tr>
+                        <td>Joseph</td>
+                        <td>T@T.com</td>
+                    </tr>
+                    <tr>
+                        <td>Joseph</td>
+                        <td>T@T.com</td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div id="sidebar2">
+                <p align="center"><b>Post Comment:</b></p>
+                <form method="post" align="center">
+                    <textarea name="comment" cols="40" rows="5" placeholder="Add Comment Here"></textarea>
+                    <input type="hidden" name="postCommentParent" value="{{ groupID }}">
+                    <br/>
+                    <input type="submit" name="commentSubmit" value="submit">
+                </form>
+                <br/>
+
+                {% for parentCom in comments %}
+                    <div class="well">
+                        <label align="left" style="text-align: left;">{{ parentCom[0] }}</label><p align="left" style="text-align: left;">{{ parentCom[1] }}</p>
+                        {% for reply in replyComments %}
+
+                            {% if reply[0] == parentCom[2] %}
+
+                                <div class="well">
+                                    <label align="left" style="text-align: left;">{{ reply[1] }}</label><p align="left" style="text-align: left;">{{ reply[2] }}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <div id="{{ parentCom[2] }}">
+                            <form method="post">
+                                <textarea name="comment" placeholder="reply comment here"></textarea>
+                                <input type="hidden" name="postCommentReply" value="{{ parentCom[2] }}">
+                                <br/>
+                                <input type="submit" name="replySubmit" value="Reply">
+                            </form>
+
+
+                        </div>
+
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="footer" class="container">
+    <div>
+        <div>
+            <h2>Get in touch</h2>
+            <span class="byline">We Probably Won't Have Any Of These Though</span> </div>
+        <ul class="contact">
+            <li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
+            <li><a href="#" class="icon icon-facebook"><span></span></a></li>
+            <li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+            <li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
+            <li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
+        </ul>
+    </div>
+    <p>&copy; 2014 Class-Survivor.com. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>.</p>
+</div>
+
+{% endblock %}
+
+{% block jsblock %}
+
+{% endblock %}

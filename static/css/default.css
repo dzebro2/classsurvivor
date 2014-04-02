@@ -2148,12 +2148,27 @@ td
 	width: 345px;
 }
 
+#sidebar2
+{
+    float: left;
+    width: 70%;
+}
+
 #lsidebar
 {
 	float: left;
 	width: 30%;
 	margin-left:150px;
 }
+
+#lsidebar4
+{
+    float: left;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 #lsidebar3
 {

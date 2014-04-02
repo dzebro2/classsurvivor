@@ -5,5 +5,7 @@ __all__ = [
     "AccountInfo",
     "Profile",
     "signout",
-    "ClassPage"
+    "ClassPage",
+    "CreateGroup",
+    "Group"
 ]

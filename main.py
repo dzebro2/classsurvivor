@@ -48,6 +48,8 @@ app = WSGIApplication([
                                   (r'/accountinfo/(.*)/(.*)/(.*)', AccountInfo.AccountInfo),
                                   (r'/profile/(.*)', Profile.Profile),
                                   (r'/signout/(.*)', signout.signout),
-                                  (r'/class/(.*)', ClassPage.ClassPage)
+                                  (r'/class/(.*)', ClassPage.ClassPage),
+                                  (r'/creategroup/(.*)', CreateGroup.CreateGroup),
+                                  (r'/group/(.*)', Group.Group)
                               ], debug=True)
 

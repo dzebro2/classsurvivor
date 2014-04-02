@@ -1,17 +1,6 @@
 {% extends "BaseLoggedIn.html" %}
 {% block bodyblock %}
-<script>
-    function confirmDelete(){
 
-        var confirmation=confirm("This action WILL PERMANENTLY DELETE your account.  Are you sure?");
-
-        if (confirmation == true)
-        {
-            document.getElementById("deleteForm").submit();
-        }
-    }
-
-</script>
 <div id="wrapper">
     <div id="welcome" class="wrapper-style1">
         <div class="title">
@@ -19,11 +8,52 @@
             <h4>{% print professorName %}</h4>
             <span class="byline"></span>
         </div>
-        <div class="container">
-            <Form method="post">
-                <input type="hidden" name="createGroup" value="{{ClassID}}">
-                <input type="submit" value="Create Group">
-            </Form>
+        <a class="button" href="/creategroup/{{ ClassID }}" style="float:left;">Create Group</a>
+        <div id="page" class="container">
+
+            <div style="float: left; width: 25%; margin-left:150px;">
+                <h3> Available Tutors </h3>
+            </div>
+            <div style="float: left; width: 25%; margin-left:150px;">
+                <h3> Groups </h3>
+            </div>
+            <div style="width:300px; float:left; margin-left:150px;">
+                <table style="width:400px; margin-right:300px; border: 1px solid black; border-collapse: collapse;">
+
+
+                    <tr>
+                        <td><b> Name </b></td>
+                        <td><b> Price </b></td>
+                        <td><b> Rating </b></td>
+                    </tr>
+
+
+                </table>
+            </div>
+            <div style="width:300px; float:left; margin-left:150px;">
+                <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
+                    <tr>
+                        <td><b> Group Name </b></td>
+                        <td><b> Group Size </b></td>
+                    </tr>
+
+                    {% for group in groups: %}
+                        <tr>
+                            <td><b><a style="color: blue; text-decoration: underline;" href="/group/{{group[3]}}">{{ group[0] }}</a></b></td>
+                            <td><b>{{ group[1] }}</b></td>
+                        </tr>
+                    {% endfor %}
+
+
+                </table>
+            </div>
+            <div style="width:750px; float:left; margin-left:150px;"><br/><br/></div>
+            <div style="width:750px; float:left; margin-left:150px;">
+                <div id="iframeWrapper" style="position: relative;">
+                <div id="iframeBlocker" style="position: absolute; top: 0; left:0; width:750px; height:450px;"></div>
+                <iframe readonly seamless src="http://www.ratemyprofessors.com/ShowRatings.jsp?tid=1160355" scrolling="no" width="750" height="450"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 
