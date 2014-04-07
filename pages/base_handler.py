@@ -274,11 +274,24 @@ class BaseHandler(webapp2.RequestHandler):
             email = row[0]
 
 
-        #logging.info(statement)
+
+
         try:
-            cur.execute("INSERT INTO Groups (ClassID, LeaderEmail, Name, Size, privacy) VALUES (%i, '%s', '%s', %i, %i)" % (int(classID), email, groupName, int(groupSize), priv))
+            cur.execute("INSERT INTO Groups (ClassID, LeaderEmail, Name, Size, MaxSize, privacy) VALUES "
+                        "(%i, '%s', '%s', %i, %i, %i)" % (int(classID), email, groupName, 1, int(groupSize), priv))
+            logging.info('i get here 1')
+            cur.execute("SELECT LAST_INSERT_ID() FROM Groups")
+            logging.info('i get here 2')
+            idNum = ''
+            for row in cur.fetchall():
+                logging.info(row)
+                logging.info('i get here 3')
+                idNum = row[0]
+            cur.execute("INSERT INTO UserGroupList VALUES ('%s', %i)" % (email, int(idNum)))
+            logging.info('i get here 4')
             myDB.commit()
         except:
+            logging.info('ooooooooops')
             myDB.rollback()
 
         self.redirect('/class/' + classID)
@@ -339,6 +352,51 @@ class BaseHandler(webapp2.RequestHandler):
         self.redirect('/group/' + str(groupID))
 
 
+    def joinGroupPost(self):
+        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+                               user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        sessionKey = self.request.cookies.get('auth')
+        groupID = self.request.get('joinGroup')
+
+        cur.execute("SELECT Email FROM User WHERE SessionKey='%s'" % sessionKey)
+        email = ''
+
+        for row in cur.fetchall():
+            email = row[0]
+
+        cur.execute("SELECT privacy,Size,MaxSize FROM Groups WHERE IDNumber=%i" % (int(groupID),))
+        joinable = False
+        for row in cur.fetchall():
+            if int(row[0]) == 0 and (row[1] < row[2] or row[2] == 0):
+                joinable = True
+
+        if joinable:
+            try:
+                cur.execute("INSERT INTO UserGroupList VALUES ('%s', %i)" % (email, int(groupID)))
+                myDB.commit()
+            except:
+                myDB.rollback()
+
+        self.redirect('/group/' + groupID)
+
+    def deleteMemberPost(self):
+        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+                               user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        member = self.request.get('member')
+        groupID = self.request.get('deleteMember')
+
+        try:
+            cur.execute("DELETE FROM UserGroupList WHERE Email='%s' AND GroupID=%i" % (member, int(groupID)))
+            myDB.commit()
+        except:
+            myDB.rollback()
+
+
+        self.redirect('/group/' + groupID)
 
 
 
@@ -366,5 +424,9 @@ class BaseHandler(webapp2.RequestHandler):
             self.commentPostParent()
         elif self.request.get('postCommentReply'):
             self.commentPostReply()
+        elif self.request.get('joinGroup'):
+            self.joinGroupPost()
+        elif self.request.get('deleteMember'):
+            self.deleteMemberPost()
 
 

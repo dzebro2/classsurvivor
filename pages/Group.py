@@ -34,6 +34,8 @@ class Group(base_handler.BaseHandler):
             self.redirect('/home')
             return
 
+
+
         cur.execute("SELECT ClassID,Name FROM Groups WHERE IDNumber=%i" % (int(groupID),))
         courseID = None
         groupName = ''
@@ -54,6 +56,15 @@ class Group(base_handler.BaseHandler):
             if row[2] == 0:
                 groups.append(row)
 
+        cur.execute("SELECT LeaderEmail FROM Groups WHERE IDNumber=%i" % (int(groupID,)))
+        leaderEmail = None
+        for row in cur.fetchall():
+            leaderEmail = row[0]
+
+        isLeader = False
+        if userInfo[1] == leaderEmail:
+            isLeader = True
+
         comments = []
 
         cur.execute("SELECT Name,Content,CommentID FROM (User INNER JOIN Comments ON User.Email=Comments.PosterEmail) WHERE ParentID=0 AND GroupID=%i" % (int(groupID),))
@@ -69,6 +80,14 @@ class Group(base_handler.BaseHandler):
         for row in cur.fetchall():
             replys.append(row)
 
-        context = {'replyComments': replys, 'comments': comments, 'groupID': groupID, 'groupName': groupName, 'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
+        members = []
+        cur.execute("SELECT Name,Email FROM UserGroupList NATURAL JOIN User WHERE GroupID=%i" % (int(groupID),))
+        inGroup = False
+        for row in cur.fetchall():
+            if row[1] == userInfo[1]:
+                inGroup = True
+            members.append(row)
+
+        context = {'leader': isLeader, 'inGroup': inGroup, 'members': members, 'replyComments': replys, 'comments': comments, 'groupID': groupID, 'groupName': groupName, 'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
         self.render("Group.html", **context)
 

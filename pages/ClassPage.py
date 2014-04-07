@@ -41,11 +41,20 @@ class ClassPage(base_handler.BaseHandler):
             className = row[0]
             professorName = row[1]
 
-        cur.execute("SELECT Name,Size,privacy,IDNumber FROM Groups WHERE ClassID=%i" % (int(courseID),))
+        cur.execute("SELECT Name,Size,privacy,IDNumber,MaxSize FROM Groups WHERE ClassID=%i" % (int(courseID),))
         groups = []
         for row in cur.fetchall():
+            info = []
+            if row[1] == row[4]:
+                info.append('No')
+            else:
+                info.append('Yes')
+
             if row[2] == 0:
-                groups.append(row)
+                info.append(row)
+                groups.append(info)
+
+
 
         context = {'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
         self.render("Class.html", **context)

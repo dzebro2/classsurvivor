@@ -74,11 +74,21 @@
 </div>
 <div style="width:300px; float:left; margin-left:150px;">
     <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
-    <tr> 
-      <td><b> Group Name </b></td>        
-      <td><b> Course Number </b></td>
+        <tr>
+          <td><b> Group Name </b></td>
+          <td><b> Class Name </b></td>
 
-    </tr>
+        </tr>
+
+
+            {% for group in groups %}
+                <tr>
+                    <td><a style="color: blue; text-decoration: underline;" href="/group/{{group[2]}}">{{group[0]}}</a></td>
+                    <td>{{ group[1] }}</td>
+                </tr>
+            {% endfor %}
+
+
    
     
     </table>

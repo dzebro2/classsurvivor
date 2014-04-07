@@ -8,7 +8,18 @@
             <h4>{% print className + ' with ' + professorName %}</h4>
             <span class="byline"></span>
         </div>
+        <br/>
+        {% if not inGroup %}
+            <form method="post" style="float:right;">
+                <input type="hidden" name="joinGroup" value="{{ groupID }}">
+                <input type="submit" name="joinSubmit" value="Join Group">
+            </form>
+        {% else %}
+            <p style="float:right;">You are in this group</p>
+        {% endif %}
+
         <div id="page" class="container">
+
             <div id="lsidebar4">
                 <p><b>Description:</b></p>
                 <p>ajsdklfja skldjfaksj dfkla jsdklfjaks ldjfa klsdjfklasdj fkl sdfaksjdfkl;ajsdkl;fjaklsdjfk; lajsdkf asd fasd </p>
@@ -16,35 +27,38 @@
                 <p><b>Members:</b></p>
                 <table align="center" style="width:30%; border: 1px solid black; border-collapse: collapse;">
                     <tr>
+                        {% if leader %}
+                            <td>   </td>
+                        {% endif %}
                         <td><b>Name</b></td>
                         <td><b>Email</b></td>
                     </tr>
 
-                     <tr>
-                         <td>Joseph</td>
-                         <td>T@T.com</td>
-                     </tr>
-                    <tr>
-                        <td>Joseph</td>
-                        <td>T@T.com</td>
-                    </tr>
-                    <tr>
-                        <td>Joseph</td>
-                        <td>T@T.com</td>
-                    </tr>
-                    <tr>
-                        <td>Joseph</td>
-                        <td>T@T.com</td>
-                    </tr>
-                    <tr>
-                        <td>Joseph</td>
-                        <td>T@T.com</td>
-                    </tr>
+                     {% for member in members %}
+                        <tr>
+                            {% if leader %}
+                                {% if loop.index != 1 %}
+                                    <td>
+                                        <Form method="post">
+                                            <input type="hidden" name="deleteMember" value="{{ groupID }}">
+                                            <input type="hidden" name="member" value="{{ member[1] }}">
+                                            <input type="submit" value="X" style="background-color: black; color: red;">
+                                        </Form>
+                                    </td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+                            {% endif %}
+                            <td>{{ member[0] }}</td>
+                            <td>{{ member[1] }}</td>
+                        </tr>
+                     {% endfor %}
                 </table>
 
             </div>
 
             <div id="sidebar2">
+            {% if inGroup %}
                 <p align="center"><b>Post Comment:</b></p>
                 <form method="post" align="center">
                     <textarea name="comment" cols="40" rows="5" placeholder="Add Comment Here"></textarea>
@@ -54,18 +68,18 @@
                 </form>
                 <br/>
 
-                {% for parentCom in comments %}
-                    <div class="well">
-                        <label align="left" style="text-align: left;">{{ parentCom[0] }}</label><p align="left" style="text-align: left;">{{ parentCom[1] }}</p>
-                        {% for reply in replyComments %}
+                    {% for parentCom in comments %}
+                        <div class="well">
+                            <label align="left" style="text-align: left;">{{ parentCom[0] }}</label><p align="left" style="text-align: left;">{{ parentCom[1] }}</p>
+                            {% for reply in replyComments %}
 
-                            {% if reply[0] == parentCom[2] %}
+                                {% if reply[0] == parentCom[2] %}
 
-                                <div class="well">
-                                    <label align="left" style="text-align: left;">{{ reply[1] }}</label><p align="left" style="text-align: left;">{{ reply[2] }}</p>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                                    <div class="well">
+                                        <label align="left" style="text-align: left;">{{ reply[1] }}</label><p align="left" style="text-align: left;">{{ reply[2] }}</p>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         <div id="{{ parentCom[2] }}">
                             <form method="post">
                                 <textarea name="comment" placeholder="reply comment here"></textarea>
@@ -78,7 +92,10 @@
                         </div>
 
                     </div>
-                {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    <p><b>You need to join the group to view comments</b></p>
+                {% endif %}
             </div>
         </div>
     </div>

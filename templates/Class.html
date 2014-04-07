@@ -35,12 +35,14 @@
                     <tr>
                         <td><b> Group Name </b></td>
                         <td><b> Group Size </b></td>
+                        <td><b> Joinable </b></td>
                     </tr>
 
                     {% for group in groups: %}
                         <tr>
-                            <td><b><a style="color: blue; text-decoration: underline;" href="/group/{{group[3]}}">{{ group[0] }}</a></b></td>
-                            <td><b>{{ group[1] }}</b></td>
+                            <td><b><a style="color: blue; text-decoration: underline;" href="/group/{{group[1][3]}}">{{ group[1][0] }}</a></b></td>
+                            <td><b>{{ group[1][1] }}</b></td>
+                            <td><b>{{ group[0] }}</b></td>
                         </tr>
                     {% endfor %}
 
