@@ -21,8 +21,11 @@ class ClassPage(base_handler.BaseHandler):
         logging.info('courseInfo: ' + courseID)
         sessionkey = self.request.cookies.get('auth')
 
-        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
-                               user="akkowal2_drew", passwd="cs411sp14")
+        if (os.getenv('SERVER_SOFTWARE') and
+                os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+            myDB = MySQLdb.connect(unix_socket='/cloudsql/class--survivor:survivor', db='akkowal2_survivor', user='root')
+        else:
+            myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor", user="akkowal2_drew", passwd="cs411sp14")
         cur = myDB.cursor()
         cur.execute("SELECT * FROM User WHERE SessionKey=%s", (sessionkey,))
         userInfo = None
@@ -56,6 +59,6 @@ class ClassPage(base_handler.BaseHandler):
 
 
 
-        context = {'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
+        context = {'classSearch': '/classSearch/', 'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
         self.render("Class.html", **context)
 

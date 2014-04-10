@@ -7,5 +7,6 @@ __all__ = [
     "signout",
     "ClassPage",
     "CreateGroup",
-    "Group"
+    "Group",
+    "ClassSearch"
 ]

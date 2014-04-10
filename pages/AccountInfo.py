@@ -24,8 +24,14 @@ class AccountInfo(base_handler.BaseHandler):
         logging.info('Updated: ' + str(updated))
         logging.info('results: ' + str(results))
 
-        myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
-                                         user="akkowal2_drew", passwd="cs411sp14")
+        if (os.getenv('SERVER_SOFTWARE') and
+                os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+            myDB = MySQLdb.connect(unix_socket='/cloudsql/class--survivor:survivor', db='akkowal2_survivor', user='root')
+        else:
+            myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor", user="akkowal2_drew", passwd="cs411sp14")
+
+        #myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+        #                                 user="akkowal2_drew", passwd="cs411sp14")
         cur = myDB.cursor()
         cur.execute("SELECT * FROM User WHERE SessionKey=%s", (sessionkey,))
         userInfo = None
@@ -48,8 +54,13 @@ class AccountInfo(base_handler.BaseHandler):
         if not results:
             results = []
         else:
-            myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
-                                   user="akkowal2_drew", passwd="cs411sp14")
+            #myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor",
+            #                       user="akkowal2_drew", passwd="cs411sp14")
+            if (os.getenv('SERVER_SOFTWARE') and
+                    os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+                myDB = MySQLdb.connect(unix_socket='/cloudsql/class--survivor:survivor', db='akkowal2_survivor', user='root')
+            else:
+                myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor", user="akkowal2_drew", passwd="cs411sp14")
             cur = myDB.cursor()
 
             deptCode = results[0:results.find('&')]
@@ -58,12 +69,19 @@ class AccountInfo(base_handler.BaseHandler):
             logging.info('courseNum: ' + courseNum)
 
             try:
-                statement = "SELECT ClassID, ClassDepartment, CourseNumber, ProfessorName FROM Class WHERE ClassDepartment='%s' AND CourseNumber=%s" % (deptCode, courseNum)
+                Statement = ''
+                if deptCode and courseNum:
+                    statement = "SELECT ClassID, ClassDepartment, CourseNumber, ProfessorName FROM Class WHERE ClassDepartment='%s' AND CourseNumber=%s" % (deptCode, courseNum)
+                elif deptCode and not courseNum:
+                    statement = "SELECT ClassID, ClassDepartment, CourseNumber, ProfessorName FROM Class WHERE ClassDepartment='%s'" % (deptCode,)
+                elif not deptCode and courseNum:
+                    statement = "SELECT ClassID, ClassDepartment, CourseNumber, ProfessorName FROM Class WHERE CourseNumber=%s" % (courseNum,)
 
                 cur.execute(statement)
 
                 for row in cur:
                     classes.append(row)
+                classes.sort()
             except:
                 classes = []
 
@@ -78,6 +96,6 @@ class AccountInfo(base_handler.BaseHandler):
 
 
         info = [['Email', userInfo[1]], ['Name', userInfo[2]], ['Major', userInfo[4]], ['Class Status', userInfo[5]], ['Gender', userInfo[6]], ['Location', userInfo[7]]]
-        context = {'departments': departments, 'profile': '/profile/' + sessionkey, 'searchResults': classes, 'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
+        context = {'classSearch': '/classSearch/', 'departments': departments, 'profile': '/profile/' + sessionkey, 'searchResults': classes, 'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
         self.render("AccountInfo.html", **context)
 

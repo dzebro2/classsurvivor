@@ -16,9 +16,9 @@ import copy
 from pages import base_handler
 
 
-class CreateGroup(base_handler.BaseHandler):
-    def get(self, courseID):
-        logging.info('courseInfo: ' + courseID)
+class ClassSearch(base_handler.BaseHandler):
+    def get(self, searchRes=''):
+        logging.info('searchRes: ' + searchRes)
         sessionkey = self.request.cookies.get('auth')
 
         if (os.getenv('SERVER_SOFTWARE') and
@@ -37,13 +37,8 @@ class CreateGroup(base_handler.BaseHandler):
             self.redirect('/home')
             return
 
-        cur.execute("SELECT ClassName,ProfessorName FROM Class WHERE ClassID=%i" % (int(courseID)))
-        className = ''
-        professorName = ''
-        for row in cur.fetchall():
-            className = row[0]
-            professorName = row[1]
 
-        context = {'classSearch': '/classSearch/', 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
-        self.render("CreateGroup.html", **context)
+
+        context = {'classSearch': '/classSearch/', 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
+        self.render("ClassSearch.html", **context)
 

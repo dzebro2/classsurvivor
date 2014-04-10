@@ -50,6 +50,7 @@ app = WSGIApplication([
                                   (r'/signout/(.*)', signout.signout),
                                   (r'/class/(.*)', ClassPage.ClassPage),
                                   (r'/creategroup/(.*)', CreateGroup.CreateGroup),
-                                  (r'/group/(.*)', Group.Group)
+                                  (r'/group/(.*)', Group.Group),
+                                  (r'/classSearch/(.*)', ClassSearch.ClassSearch),
                               ], debug=True)
 
