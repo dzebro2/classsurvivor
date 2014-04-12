@@ -65,7 +65,7 @@ class BaseHandler(webapp2.RequestHandler):
                     myDB.rollback()
 
                 sessionKey = hashlib.sha256(str(email)+str(self.request.remote_addr)+str(self.request.get('RPassword'))+str(time.time())).hexdigest()
-                self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=86400, overwrite=True) #remember to add secure=True when deploying
+                self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=86400, overwrite=True, secure=True) #remember to add secure=True when deploying
                 cur.execute("""UPDATE User SET SessionKey=%s WHERE Email=%s""", (sessionKey, email))
                 myDB.commit()
                 self.redirect('/accountinfo/' + sessionKey + '/ /')
@@ -107,7 +107,7 @@ class BaseHandler(webapp2.RequestHandler):
                 loggedIn = email
                 logging.info(loggedIn + " is logged in!")
                 sessionKey = hashlib.sha256(str(email)+str(self.request.remote_addr)+str(passW)+str(time.time())).hexdigest()
-                self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=86400, overwrite=True) #remember to add secure=True when deploying
+                self.response.set_cookie(key='auth', value=sessionKey, httponly=True, max_age=86400, overwrite=True, secure=True) #remember to add secure=True when deploying
                 cur.execute("""UPDATE User SET SessionKey=%s WHERE Email=%s""", (sessionKey, email))
                 myDB.commit()
                 self.redirect('/accountinfo/' + sessionKey + '/ /')
@@ -439,6 +439,68 @@ class BaseHandler(webapp2.RequestHandler):
 
         self.redirect('/group/' + groupID)
 
+    def courseSearchPagePost(self):
+        deptCode = self.request.get('searchDeptCode')
+        courseNum = self.request.get('searchCourseNumber')
+
+        self.redirect('/classSearch/' + str(deptCode) + '_' + str(courseNum))
+
+    def addTutorPost(self):
+        logging.info("inaddtutorpost")
+        availability = self.request.get('availability')
+        price = self.request.get('tutorPrice')
+        otherNotes = self.request.get('otherNotes')
+
+
+        if (os.getenv('SERVER_SOFTWARE') and
+                os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+            myDB = MySQLdb.connect(unix_socket='/cloudsql/class--survivor:survivor', db='akkowal2_survivor', user='root')
+        else:
+            myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor", user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        sessionKey = self.request.cookies.get('auth')
+        cur.execute("SELECT Email FROM User WHERE SessionKey='%s'" % sessionKey)
+        email = ''
+
+        for row in cur.fetchall():
+            email = row[0]
+
+        try:
+            logging.info("in tutor insert")
+            cur.execute("INSERT INTO Tutor VALUES ('%s', %f, 0.00, '%s', '%s')" % (email, float(price), str(availability), str(otherNotes)))
+            myDB.commit()
+        except:
+            myDB.rollback()
+
+
+        self.redirect('/profile/' + self.request.cookies.get('auth'))
+
+    def addTutorToClassPost(self):
+        classID = self.request.get('addTutorClass')
+
+        if (os.getenv('SERVER_SOFTWARE') and
+                os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+            myDB = MySQLdb.connect(unix_socket='/cloudsql/class--survivor:survivor', db='akkowal2_survivor', user='root')
+        else:
+            myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor", user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        sessionKey = self.request.cookies.get('auth')
+        cur.execute("SELECT Email FROM User WHERE SessionKey='%s'" % sessionKey)
+        email = ''
+
+        for row in cur.fetchall():
+            email = row[0]
+
+        try:
+            cur.execute("INSERT INTO TutorClassList VALUES ('%s', %i)" % (email, int(classID)))
+            myDB.commit()
+        except:
+            myDB.rollback()
+
+        self.redirect('/class/' + str(classID))
+
 
 
     def post(self, SK=None, results=None, update=None):
@@ -469,5 +531,11 @@ class BaseHandler(webapp2.RequestHandler):
             self.joinGroupPost()
         elif self.request.get('deleteMember'):
             self.deleteMemberPost()
+        elif self.request.get('courseSearchPage'):
+            self.courseSearchPagePost()
+        elif self.request.get('addTutor'):
+            self.addTutorPost()
+        elif self.request.get('addTutorClass'):
+            self.addTutorToClassPost()
 
 

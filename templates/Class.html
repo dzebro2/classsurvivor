@@ -9,6 +9,11 @@
             <span class="byline"></span>
         </div>
         <a class="button" href="/creategroup/{{ ClassID }}" style="float:left;">Create Group</a>
+        <form method="post">
+            <input type='hidden' name="addTutorClass" value="{{ ClassID }}">
+            <input style="float:right;" class="button" type="submit" name="tutorSubmit" value="Become Tutor">
+        </form>
+
         <div id="page" class="container">
 
             <div style="float: left; width: 25%; margin-left:150px;">
@@ -27,6 +32,13 @@
                         <td><b> Rating </b></td>
                     </tr>
 
+                    {% for tutor in tutors: %}
+                    <tr>
+                        <td><b><a style="color: blue; text-decoration: underline;" href="/publicProfile/{{ tutor[3] }}">{{ tutor[0] }}</a></b></td>
+                        <td><b>{{ tutor[1] }}</b></td>
+                        <td><b>{{ tutor[2] }}</b></td>
+                    </tr>
+                    {% endfor %}
 
                 </table>
             </div>

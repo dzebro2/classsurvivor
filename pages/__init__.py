@@ -8,5 +8,7 @@ __all__ = [
     "ClassPage",
     "CreateGroup",
     "Group",
-    "ClassSearch"
+    "ClassSearch",
+    "TutorDetails",
+    "PublicProfile"
 ]

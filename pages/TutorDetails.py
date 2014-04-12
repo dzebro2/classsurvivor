@@ -16,9 +16,9 @@ import copy
 from pages import base_handler
 
 
-class ClassSearch(base_handler.BaseHandler):
-    def get(self, searchRes=''):
-        logging.info('searchRes: ' + searchRes)
+class TutorDetails(base_handler.BaseHandler):
+    def get(self):
+        #logging.info('courseInfo: ' + courseID)
         sessionkey = self.request.cookies.get('auth')
 
         if (os.getenv('SERVER_SOFTWARE') and
@@ -37,16 +37,8 @@ class ClassSearch(base_handler.BaseHandler):
             self.redirect('/home')
             return
 
-        searchResults = []
-        if searchRes != '':
-            deptCode = searchRes[0:searchRes.find('_')]
-            courseNum = searchRes[searchRes.find('_')+1:searchRes.find('_')+4]
-            cur.execute("SELECT ClassDepartment,CourseNumber,ClassName,ProfessorName,ClassID FROM Class WHERE ClassDepartment='%s' AND CourseNumber=%i" % (deptCode, int(courseNum)))
-            for row in cur.fetchall():
-                searchResults.append(row)
 
 
-
-        context = {'searchResults': searchResults, 'classSearch': '/classSearch/', 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
-        self.render("ClassSearch.html", **context)
+        context = {'classSearch': '/classSearch/', 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
+        self.render("TutorDetails.html", **context)
 

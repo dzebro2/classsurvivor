@@ -1,0 +1,147 @@
+{% extends "BaseLoggedIn.html" %}
+{% block bodyblock %}
+
+<div id="wrapper">
+    <div id="welcome" class="wrapper-style1">
+        <div class="title">
+            <h2>Profile</h2>
+
+        </div>
+        <div id="page" class="container">
+            <div id="lsidebar">
+                {% if profilePic != 'default': %}
+                <img src="data:image/jpeg;base64,{{ profilePic }}" height="200" width="200"><br><br>
+                {% else: %}
+                <img src="../../static/images/default_profile_pic.jpg" height="200" width="200"><br><br>
+                {% endif %}
+
+            </div>
+            <div id="lsidebar2">
+                <Form method="post">
+                    <fieldset>
+                        {% for info in publicProfile %}
+                        {% if not info[1]: %}
+                        <label for={{ info[1] }}>{{ info[0] }}: </label><input readonly type='text' value="" name="{{ info[0] }}" style="border:0px;">
+                        {% else: %}
+                        {% if info[0] == 'Email': %}
+                        <label for={{ info[1] }}>{{ info[0] }}: </label><input readonly type='text' readonly value="{{ info[1] }}" name="{{ info[0] }}" size="30" style="border:0px;">
+                        {% else: %}
+                        <label for={{ info[1] }}>{{ info[0] }}: </label><input readonly type='text' value="{{ info[1] }}" name="{{ info[0] }}" style="border:0px;">
+                        {% endif %}
+
+
+                        {% endif %}
+
+                        {% endfor %}
+
+
+                    </fieldset>
+                    <input type="hidden" name="editInfo" value="editInfo">
+                    <br>
+                </Form>
+            </div>
+            <div id="lsidebar3">
+
+            </div>
+            <div style="float: left; width: 25%; margin-left:150px;">
+                <h3> Classes </h3>
+            </div>
+            <div style="float: left; width: 25%; margin-left:150px;">
+                <h3> Classes I Tutor </h3>
+            </div>
+
+            <div style="width:300px; float:left; margin-left:150px;">
+                <table style="width:400px; margin-right:300px; border: 1px solid black; border-collapse: collapse;">
+
+
+                    <tr>
+                        <td><b> College </b></td>
+                        <td><b> Course Number </b></td>
+                        <td><b> Class Name </b></td>
+                        <td><b> Professor </b></td>
+                    </tr>
+                    {% for row in classes %}
+                    <tr>
+                        <td>{{row[0]}}</td><td>{{row[1]}}</td><td><a style="color: blue; text-decoration: underline;" href="/class/{{row[4]}}">{{row[2]}}</a></td><td>{{row[3]}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+
+            <div style="width:300px; float:left; margin-left:150px;">
+                <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
+                    <tr>
+                        <td><b> Class Name </b></td>
+                        <td><b> Price </b></td>
+                        <td><b> Rating </b></td>
+                        <td><b> Availability </b></td>
+                        <td><b> Other Notes </b></td>
+
+                    </tr>
+
+
+                    {% for info in tutorInfo %}
+                    <tr>
+                        <td>{{info[0]}}</td>
+                        <td>{{info[1]}}</td>
+                        <td>{{info[2]}}</td>
+                        <td>{{info[3]}}</td>
+                        <td>{{info[4]}}</td>
+                    </tr>
+                    {% endfor %}
+
+
+
+
+                </table>
+            </div>
+            <div style="float: left; width: 25%; margin-left:150px;">
+                <h3> Groups</h3>
+            </div>
+            <div style="width:300px; float:left; margin-left:150px;">
+                <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
+                    <tr>
+                        <td><b> Group Name </b></td>
+                        <td><b> Class Name </b></td>
+
+                    </tr>
+
+
+                    {% for group in groups %}
+                    <tr>
+                        <td><a style="color: blue; text-decoration: underline;" href="/group/{{group[2]}}">{{group[0]}}</a></td>
+                        <td>{{ group[1] }}</td>
+                    </tr>
+                    {% endfor %}
+
+
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="footer" class="container">
+    <div>
+        <div>
+            <h2>Get in touch</h2>
+            <span class="byline">We Probably Won't Have Any Of These Though</span> </div>
+        <ul class="contact">
+            <li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
+            <li><a href="#" class="icon icon-facebook"><span></span></a></li>
+            <li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+            <li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
+            <li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
+        </ul>
+    </div>
+    <p>&copy; 2014 Class-Survivor.com. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>.</p>
+</div>
+
+{% endblock %}
+
+{% block jsblock %}
+{% endblock %}

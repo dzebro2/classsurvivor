@@ -10,14 +10,37 @@
 
         <div align="center" style="width:100%;">
             <br/>
-            <form method="post" >
+            <form method="post">
                 <fieldset style="width:100%;">
-                    <input style="width: 50%; height: 30px;" type="text" name="searchQuery" value="" placeholder="Enter Class">
+                    <fieldset>
+                        <label for="DepartCode">Department Code: </label><input style="width:30%;" type='text' value="" name="searchDeptCode" placeholder="e.g. CS">
+                        <label for="CourseNum">Course Number: </label><input style="width:30%;" type='text' value="" name="searchCourseNumber" placeholder="e.g. 125">
+                        <br/>
+                        <input type="hidden" name="courseSearchPage" value="courseSearchPage">
+
+                    </fieldset>
                     <br/>
                     <input class="button" align="center" type="submit" name="searchClassSubmit" value="Search!">
                 </fieldset>
 
             </form>
+            <br/>
+            <table align="center" style="width:400px; border: 1px solid black; border-collapse: collapse;">
+
+
+                <tr>
+                    <td><b> College </b></td>
+                    <td><b> Course Number </b></td>
+                    <td><b> Class Name </b></td>
+                    <td><b> Professor Name </b></td>
+                </tr>
+                {% for row in searchResults %}
+                <tr>
+                    <td>{{row[0]}}</td><td>{{row[1]}}</td><td><a style="color: blue; text-decoration: underline;" href="/class/{{ row[4] }}">{{row[2]}}</a></td><td>{{row[3]}}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
         </div>
 
     </div>

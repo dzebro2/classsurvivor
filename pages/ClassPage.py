@@ -57,8 +57,13 @@ class ClassPage(base_handler.BaseHandler):
                 info.append(row)
                 groups.append(info)
 
+        tutors = []
+        cur.execute("SELECT name,Price,Rating,User.email FROM Tutor NATURAL JOIN User NATURAL JOIN TutorClassList WHERE ClassID=%i" % int(courseID))
+        for row in cur.fetchall():
+            tutors.append(row)
 
 
-        context = {'classSearch': '/classSearch/', 'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
+
+        context = {'tutors': tutors, 'classSearch': '/classSearch/', 'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
         self.render("Class.html", **context)
 
