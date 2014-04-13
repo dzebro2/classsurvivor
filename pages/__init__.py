@@ -10,5 +10,6 @@ __all__ = [
     "Group",
     "ClassSearch",
     "TutorDetails",
-    "PublicProfile"
+    "PublicProfile",
+    "GroupFinder"
 ]

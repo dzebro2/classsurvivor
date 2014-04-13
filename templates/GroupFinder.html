@@ -1,0 +1,74 @@
+{% extends "BaseLoggedIn.html" %}
+{% block bodyblock %}
+
+<div id="wrapper">
+    <div id="welcome" class="wrapper-style1">
+        <div class="title">
+            <h2>Group Finder</h2>
+            <span class="byline"></span>
+        </div>
+        <div id="page" class="container">
+            <Form method="post">
+                <fieldset>
+                    <label>Class:</label><select name="classList">
+                        {% for class in classList %}
+                            <option value="{{ class[0] }}">{{ class[1] }}</option>
+                        {% endfor %}
+                    </select>
+                    <label>Preferred Minimum Group Size:</label><input type="text" value="" name="prefMinSize">
+                    <label>Preferred Maximum Group Size:</label><input type="text" name="prefMaxSize" value=""><br/>
+                    <br/>
+                    <input type="hidden" name="groupFind" value="groupFind">
+
+                </fieldset>
+                <input style="margin-left: 50%; text-align: center;" type="submit" name="submitGroupFind" value="Find Groups">
+
+
+            </Form>
+
+            <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
+                <tr>
+                    <td><b>Group Name</b></td>
+                    <td><b>Overall Match</b></td>
+                    <td><b>Group Size Match</b></td>
+                    <td><b>Group Major Match</b></td>
+                    <td><b>Group Location Match</b></td>
+                </tr>
+
+                {% for group in groupInfo %}
+                    <tr>
+                        <td><a href="#">{{ group[0] }}</a></td>
+                        <td>{{ group[1]}}%</td>
+                        <td>{{ group[2]}}%</td>
+                        <td>{{ group[3]}}%</td>
+                        <td>{{ group[4]}}%</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+<div id="footer" class="container">
+    <div>
+        <div>
+            <h2>Get in touch</h2>
+            <span class="byline">We Probably Won't Have Any Of These Though</span> </div>
+        <ul class="contact">
+            <li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
+            <li><a href="#" class="icon icon-facebook"><span></span></a></li>
+            <li><a href="#" class="icon icon-dribbble"><span>Pinterest</span></a></li>
+            <li><a href="#" class="icon icon-tumblr"><span>Google+</span></a></li>
+            <li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
+        </ul>
+    </div>
+    <p>&copy; 2014 Class-Survivor.com. | Photos by <a href="http://fotogrph.com/">Fotogrph</a> | Design by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>.</p>
+</div>
+
+{% endblock %}
+
+{% block jsblock %}
+
+{% endblock %}

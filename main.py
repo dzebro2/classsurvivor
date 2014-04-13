@@ -54,5 +54,6 @@ app = WSGIApplication([
                                   (r'/classSearch/(.*)', ClassSearch.ClassSearch),
                                   (r'/tutorDetails/', TutorDetails.TutorDetails),
                                   (r'/publicProfile/(.*)', PublicProfile.PublicProfile),
+                                  (r'/groupFinder/(.*)', GroupFinder.GroupFinder),
                               ], debug=False)
 

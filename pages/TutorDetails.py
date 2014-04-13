@@ -39,6 +39,6 @@ class TutorDetails(base_handler.BaseHandler):
 
 
 
-        context = {'classSearch': '/classSearch/', 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
+        context = {'groupFinder': '/groupFinder/', 'classSearch': '/classSearch/', 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
         self.render("TutorDetails.html", **context)
 

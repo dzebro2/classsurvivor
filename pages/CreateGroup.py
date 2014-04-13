@@ -44,6 +44,6 @@ class CreateGroup(base_handler.BaseHandler):
             className = row[0]
             professorName = row[1]
 
-        context = {'classSearch': '/classSearch/', 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
+        context = {'groupFinder': '/groupFinder/', 'classSearch': '/classSearch/', 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
         self.render("CreateGroup.html", **context)
 

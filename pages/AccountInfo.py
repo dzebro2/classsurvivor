@@ -96,6 +96,6 @@ class AccountInfo(base_handler.BaseHandler):
 
 
         info = [['Email', userInfo[1]], ['Name', userInfo[2]], ['Major', userInfo[4]], ['Class Status', userInfo[5]], ['Gender', userInfo[6]], ['Location', userInfo[7]]]
-        context = {'classSearch': '/classSearch/', 'departments': departments, 'profile': '/profile/' + sessionkey, 'searchResults': classes, 'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
+        context = {'groupFinder': '/groupFinder/', 'classSearch': '/classSearch/', 'departments': departments, 'profile': '/profile/' + sessionkey, 'searchResults': classes, 'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
         self.render("AccountInfo.html", **context)
 

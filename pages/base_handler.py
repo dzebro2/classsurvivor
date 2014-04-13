@@ -543,6 +543,25 @@ class BaseHandler(webapp2.RequestHandler):
 
         self.redirect('/publicProfile/' + email)
 
+    def groupFinderPost(self):
+        classID = self.request.get('classList')
+        minSize = self.request.get('prefMinSize')
+        maxSize = self.request.get('prefMaxSize')
+
+        if (os.getenv('SERVER_SOFTWARE') and
+                os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+            myDB = MySQLdb.connect(unix_socket='/cloudsql/class--survivor:survivor', db='akkowal2_survivor', user='root')
+        else:
+            myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor", user="akkowal2_drew", passwd="cs411sp14")
+
+        cur = myDB.cursor()
+
+        logging.info('ClassID: ' + classID)
+        logging.info('MinSize: ' + minSize)
+        logging.info('MaxSize: ' + maxSize)
+
+        self.redirect('/groupFinder/')
+
     def post(self, SK=None, results=None, update=None):
         if self.request.get('register'):
             self.registerPost()
@@ -581,5 +600,7 @@ class BaseHandler(webapp2.RequestHandler):
             self.upvotePost()
         elif self.request.get('downvote'):
             self.downvotePost()
+        elif self.request.get('groupFind'):
+            self.groupFinderPost()
 
 

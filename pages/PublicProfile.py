@@ -109,5 +109,5 @@ class PublicProfile(base_handler.BaseHandler):
 
         info = [['Email', userInfo[1]], ['Name', userInfo[2]], ['Major', userInfo[4]], ['Class Status', userInfo[5]], ['Gender', userInfo[6]], ['Location', userInfo[7]]]
         info2 = [['Email', profileUser[1]], ['Name', profileUser[2]], ['Major', profileUser[4]], ['Class Status', profileUser[5]], ['Gender', profileUser[6]], ['Location', profileUser[7]]]
-        context = {'tutorInfo': tutorInfo, 'publicProfile': info2, 'classSearch': '/classSearch/', 'groups': groups, 'profilePic': profilePic, 'classes': classes, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'profile': '/profile/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
+        context = {'groupFinder': '/groupFinder/', 'tutorInfo': tutorInfo, 'publicProfile': info2, 'classSearch': '/classSearch/', 'groups': groups, 'profilePic': profilePic, 'classes': classes, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'profile': '/profile/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
         self.render("PublicProfile.html", **context)
