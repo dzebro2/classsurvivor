@@ -51,51 +51,95 @@
 
     </div>
     <div style="float: left; width: 25%; margin-left:150px;">
-        <h3> My Classes </h3>
-    </div>
-    <div style="float: left; width: 25%; margin-left:150px;">
-        <h3> My Groups</h3>
-    </div>
-    <div style="width:300px; float:left; margin-left:150px;">
-    <table style="width:400px; margin-right:300px; border: 1px solid black; border-collapse: collapse;">
-        
+                <h3> Classes </h3>
+            </div>
 
-    <tr>
-      <td><b>  </b></td>
-      <td><b> College </b></td>        
-      <td><b> Course Number </b></td>
-      <td><b> Class Name </b></td>
-      <td><b> Professor </b></td>
-    </tr>
-    {% for row in classes %}
-            <tr>
-                <td><Form method="post"><input type="hidden" name="deleteClass" value="deleteClass"><input type="hidden" name="delete" value="{{row[0]}} {{row[1]}} {{row[3]}}"><input type="submit" value="X" style="background-color: black; color: red;"></Form></td><td>{{row[0]}}</td><td>{{row[1]}}</td><td><a style="color: blue; text-decoration: underline;" href="/class/{{row[4]}}">{{row[2]}}</a></td><td>{{row[3]}}</td>
-            </tr>
-    {% endfor %}
-    
-    </table>
-</div>
-<div style="width:300px; float:left; margin-left:150px;">
-    <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
-        <tr>
-          <td><b> Group Name </b></td>
-          <td><b> Class Name </b></td>
-
-        </tr>
+            <div style="float: left; width: 25%; margin-left:150px;">
+                <h3> Groups</h3>
+            </div>
+            <div style="display: table-row;">
+                <div style="width:300px; float:left; margin-left:150px;display: table-cell;">
+                    <table style="width:400px; margin-right:300px; border: 1px solid black; border-collapse: collapse;">
 
 
-            {% for group in groups %}
-                <tr>
-                    <td><a style="color: blue; text-decoration: underline;" href="/group/{{group[2]}}">{{group[0]}}</a></td>
-                    <td>{{ group[1] }}</td>
-                </tr>
-            {% endfor %}
+                        <tr>
+                            <td><b> College </b></td>
+                            <td><b> Course Number </b></td>
+                            <td><b> Class Name </b></td>
+                            <td><b> Professor </b></td>
+                        </tr>
+                        {% for row in classes %}
+                        <tr>
+                            <td>{{row[0]}}</td><td>{{row[1]}}</td><td><a style="color: blue; text-decoration: underline;" href="/class/{{row[4]}}">{{row[2]}}</a></td><td>{{row[3]}}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
 
 
-   
-    
-    </table>
-</div>
+                <div style="width:300px; float:left; margin-left:150px;display: table-cell;">
+                    <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
+                        <tr>
+                            <td><b> Group Name </b></td>
+                            <td><b> Class Name </b></td>
+
+                        </tr>
+
+
+                        {% for group in groups %}
+                        <tr>
+                            <td><a style="color: blue; text-decoration: underline;" href="/group/{{group[2]}}">{{group[0]}}</a></td>
+                            <td>{{ group[1] }}</td>
+                        </tr>
+                        {% endfor %}
+
+
+
+
+                    </table>
+                </div>
+            </div>
+            <br/><br/>
+            <div style="float: left; width: 25%; margin-left:150px;">
+                <h3> Classes I Tutor </h3>
+            </div>
+
+            <div style="float: left; width: 25%; margin-left:150px;">
+                <h3> Tutor Information </h3>
+            </div>
+
+            <div style="width:300px; float:left; margin-left:150px;">
+                <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
+                    <tr>
+                        <td><b> Class Name </b></td>
+                    </tr>
+
+
+                    {% for info in tutorInfo %}
+                    <tr>
+                        <td>{{info[0]}}</td>
+                    </tr>
+                    {% endfor %}
+
+
+
+
+                </table>
+            </div>
+            <br/><br/>
+
+
+            <div style="width:300px; float:left; margin-left:150px;">
+                    <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
+                        <tr><td><b>Price</b></td><td>{{ tutorInfo[0][1] }}</td></tr>
+                        <tr style="border-right: 0px; border-right-color:white;"><td><b>Rating</b></td><td>{{ tutorInfo[0][2] }}</td></tr>
+                        <tr><td><b>Availability</b></td><td>{{ tutorInfo[0][3] }}</td></tr>
+                        <tr><td><b>Other Notes</b></td><td>{{ tutorInfo[0][4] }}</td></tr>
+                    </table>
+
+            </div>
+
     </div>
 </div>
 </div>
