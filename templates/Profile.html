@@ -43,7 +43,9 @@
         <input type="hidden" name="editInfo" value="editInfo">
         <br>
         </Form>
-            <a class="button" href="/tutorDetails/" style="float:right;">Become Tutor</a>
+            {% if not tutor %}
+                <a class="button" href="/tutorDetails/" style="float:right;">Become Tutor</a>
+            {% endif %}
     </div>
     <div id="lsidebar3">
 

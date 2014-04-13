@@ -90,12 +90,18 @@ class Profile(base_handler.BaseHandler):
         for row in cur.fetchall():
             groups.append(row)
 
+        cur.execute("SELECT Email FROM Tutor WHERE Email=%s", (userInfo[1],))
 
+        tutor = False
+        for row in cur.fetchall():
+            logging.info('Tutor Row: ' + str(row))
+            if row:
+                tutor = True
 
 
 
 
         
         info = [['Email', userInfo[1]], ['Name', userInfo[2]], ['Major', userInfo[4]], ['Class Status', userInfo[5]], ['Gender', userInfo[6]], ['Location', userInfo[7]]]
-        context = {'classSearch': '/classSearch/', 'groups': groups, 'profilePic': profilePic, 'classes': classes, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'profile': '/profile/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
+        context = {'tutor': tutor, 'classSearch': '/classSearch/', 'groups': groups, 'profilePic': profilePic, 'classes': classes, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'profile': '/profile/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
         self.render("Profile.html", **context)

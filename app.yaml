@@ -1,5 +1,5 @@
 application: class--survivor
-version: 2
+version: 6
 runtime: python27
 api_version: 1
 threadsafe: yes
@@ -7,6 +7,7 @@ threadsafe: yes
 handlers:
 - url: /css
   static_dir: static/css
+  expiration: "0m"
 
 - url: /html
   static_dir: static/html
