@@ -91,6 +91,11 @@ class Group(base_handler.BaseHandler):
                 inGroup = True
             members.append(row)
 
-        context = {'groupFinder': '/groupFinder/', 'classSearch': '/classSearch/', 'leader': isLeader, 'inGroup': inGroup, 'members': members, 'replyComments': replys, 'comments': comments, 'groupID': groupID, 'groupName': groupName, 'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
+        description=""
+        cur.execute("SELECT Description FROM Groups WHERE IDNumber=%i" % (int(groupID),))
+        for row in cur.fetchall():
+            description = row
+
+        context = {'description': description, 'groupFinder': '/groupFinder/', 'classSearch': '/classSearch/', 'leader': isLeader, 'inGroup': inGroup, 'members': members, 'replyComments': replys, 'comments': comments, 'groupID': groupID, 'groupName': groupName, 'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
         self.render("Group.html", **context)
 

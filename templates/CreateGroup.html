@@ -11,8 +11,10 @@
             <Form method="post">
                 <fieldset>
                     <label>Group Name:</label><input type="text" value="" name="groupName">
+                    <label>Group Description:</label><input type="text" value="" name="groupDescription">
                     <label>Max Group Size(0=no limit):</label><input type="text" value="0" name="groupSize">
-                    <label>Group Privacy:</label><input type="checkbox" name="privacy" value="privacy"><br/>
+                    <label>Group Privacy:</label><input type="checkbox" name="privacy" value="privacy">
+                    <br/>
                     <input type="hidden" name="createGroup" value="{{ ClassID }}">
 
                 </fieldset>

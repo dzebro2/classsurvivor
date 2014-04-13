@@ -289,6 +289,7 @@ class BaseHandler(webapp2.RequestHandler):
         groupName = self.request.get('groupName')
         groupSize = self.request.get('groupSize')
         privacy = self.request.get('privacy')
+        description = self.request.get('groupDescription')
         priv = 0
         if privacy == 'privacy':
             priv = 1
@@ -306,8 +307,8 @@ class BaseHandler(webapp2.RequestHandler):
 
 
         try:
-            cur.execute("INSERT INTO Groups (ClassID, LeaderEmail, Name, Size, MaxSize, privacy) VALUES "
-                        "(%i, '%s', '%s', %i, %i, %i)" % (int(classID), email, groupName, 1, int(groupSize), priv))
+            cur.execute("INSERT INTO Groups (ClassID, LeaderEmail, Name, Size, MaxSize, privacy, Description) VALUES "
+                        "(%i, '%s', '%s', %i, %i, %i, '%s')" % (int(classID), email, groupName, 1, int(groupSize), priv, description))
             logging.info('i get here 1')
             cur.execute("SELECT LAST_INSERT_ID() FROM Groups")
             logging.info('i get here 2')
