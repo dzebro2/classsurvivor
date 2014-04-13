@@ -501,7 +501,47 @@ class BaseHandler(webapp2.RequestHandler):
 
         self.redirect('/class/' + str(classID))
 
+    def upvotePost(self):
+        email = self.request.get('upvote')
+        logging.info(email)
+        if (os.getenv('SERVER_SOFTWARE') and
+                os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+            myDB = MySQLdb.connect(unix_socket='/cloudsql/class--survivor:survivor', db='akkowal2_survivor', user='root')
+        else:
+            myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor", user="akkowal2_drew", passwd="cs411sp14")
 
+        cur = myDB.cursor()
+
+        try:
+            statement = "UPDATE Tutor SET Rating=Rating+1 WHERE Email='%s'" % email
+            logging.info(statement)
+            cur.execute(statement)
+            myDB.commit()
+        except:
+            myDB.rollback()
+
+        self.redirect('/publicProfile/' + email)
+
+    def downvotePost(self):
+        email = self.request.get('downvote')
+        logging.info(email)
+        if (os.getenv('SERVER_SOFTWARE') and
+                os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+            myDB = MySQLdb.connect(unix_socket='/cloudsql/class--survivor:survivor', db='akkowal2_survivor', user='root')
+        else:
+            myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor", user="akkowal2_drew", passwd="cs411sp14")
+
+        cur = myDB.cursor()
+
+        try:
+            statement = "UPDATE Tutor SET Rating=Rating-1 WHERE Email='%s'" % email
+            logging.info(statement)
+            cur.execute(statement)
+            myDB.commit()
+        except:
+            myDB.rollback()
+
+        self.redirect('/publicProfile/' + email)
 
     def post(self, SK=None, results=None, update=None):
         if self.request.get('register'):
@@ -537,5 +577,9 @@ class BaseHandler(webapp2.RequestHandler):
             self.addTutorPost()
         elif self.request.get('addTutorClass'):
             self.addTutorToClassPost()
+        elif self.request.get('upvote'):
+            self.upvotePost()
+        elif self.request.get('downvote'):
+            self.downvotePost()
 
 

@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87fa3b62-50f5-48ad-958c-b962d9e731ff" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/AccountInfo.html" afterPath="$PROJECT_DIR$/templates/AccountInfo.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Profile.html" afterPath="$PROJECT_DIR$/templates/Profile.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/Profile.py" afterPath="$PROJECT_DIR$/pages/Profile.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/PublicProfile.html" afterPath="$PROJECT_DIR$/templates/PublicProfile.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.yaml" afterPath="$PROJECT_DIR$/app.yaml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/base_handler.py" afterPath="$PROJECT_DIR$/pages/base_handler.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="classsurvivor.iws" />
@@ -18,10 +20,10 @@
     <file path="/home.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1395421297498" ignored="false" />
     <file path="/__init__.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397334693033" ignored="false" />
     <file path="/default.css" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397413397394" ignored="false" />
-    <file path="/base_handler.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397340993011" ignored="false" />
+    <file path="/base_handler.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397417732314" ignored="false" />
     <file path="/boilerplate.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1395607578154" ignored="false" />
     <file path="/BaseLoggedIn.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397093052368" ignored="false" />
-    <file path="/AccountInfo.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1395940300911" ignored="false" />
+    <file path="/AccountInfo.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397419510884" ignored="false" />
     <file path="/AccountInfo.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397094752904" ignored="false" />
     <file path="/signout.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1393886091107" ignored="false" />
     <file path="/app.yaml" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397414511526" ignored="false" />
@@ -42,7 +44,7 @@
     <file path="/TutorDetails.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397341046097" ignored="false" />
     <file path="/TutorDetails.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397332610924" ignored="false" />
     <file path="/PublicProfile.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397337686685" ignored="false" />
-    <file path="/PublicProfile.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397416355700" ignored="false" />
+    <file path="/PublicProfile.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397418014129" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,29 +108,11 @@
       <file leaf-file-name="home.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/home.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="32" selection-start="1403" selection-end="1403" vertical-scroll-proportion="-2.3076923">
+            <state line="21" column="32" selection-start="1403" selection-end="1403" vertical-scroll-proportion="-1.4230769">
               <folding>
                 <marker date="1397341572324" expanded="false" signature="3094:3124" placeholder="..." />
                 <marker date="1397341572324" expanded="false" signature="3562:3574" placeholder="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TutorDetails.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/TutorDetails.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="49" selection-start="1188" selection-end="1188" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TutorDetails.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/TutorDetails.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="42" selection-start="1035" selection-end="1035" vertical-scroll-proportion="-17.615385">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -142,10 +126,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PublicProfile.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PublicProfile.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/PublicProfile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="130" column="52" selection-start="4888" selection-end="4888" vertical-scroll-proportion="0.5795053">
+            <state line="128" column="61" selection-start="4699" selection-end="4699" vertical-scroll-proportion="-13.692307">
               <folding>
                 <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#4;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -159,10 +143,37 @@
                 <element signature="n#style#0;n#div#8;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#table#0;n#div#8;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#9;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#table#0;n#div#9;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tr#1;n#table#0;n#div#9;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#2;n#tr#1;n#table#0;n#div#9;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#3;n#tr#1;n#table#0;n#div#9;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccountInfo.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/AccountInfo.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="92" column="37" selection-start="4048" selection-end="4048" vertical-scroll-proportion="1.1401649">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccountInfo.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/AccountInfo.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="97" column="166" selection-start="3856" selection-end="3856" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base_handler.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/base_handler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="525" column="37" selection-start="21447" selection-end="21447" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -203,15 +214,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/bootstrap.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4081" column="52" selection-start="80527" selection-end="80527" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -230,14 +232,12 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/pages/ClassSearch.py" />
         <option value="$PROJECT_DIR$/templates/ClassSearch.html" />
         <option value="$PROJECT_DIR$/pages/__init__.py" />
         <option value="$PROJECT_DIR$/pages/PublicProfile.py" />
         <option value="$PROJECT_DIR$/pages/ClassPage.py" />
         <option value="$PROJECT_DIR$/pages/TutorDetails.py" />
         <option value="$PROJECT_DIR$/templates/Class.html" />
-        <option value="$PROJECT_DIR$/pages/base_handler.py" />
         <option value="$PROJECT_DIR$/templates/TutorDetails.html" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/templates/home.html" />
@@ -245,7 +245,9 @@
         <option value="$PROJECT_DIR$/pages/Profile.py" />
         <option value="$PROJECT_DIR$/static/css/default.css" />
         <option value="$PROJECT_DIR$/app.yaml" />
+        <option value="$PROJECT_DIR$/pages/base_handler.py" />
         <option value="$PROJECT_DIR$/templates/PublicProfile.html" />
+        <option value="$PROJECT_DIR$/templates/AccountInfo.html" />
       </list>
     </option>
   </component>
@@ -727,26 +729,9 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/ClassSearch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="34" selection-start="1245" selection-end="1245" vertical-scroll-proportion="-19.615385" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/ClassPage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="148" selection-start="1972" selection-end="1972" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Class.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="52" selection-start="474" selection-end="474" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/base_handler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="448" column="36" selection-start="18403" selection-end="18403" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -800,16 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="32" selection-start="1403" selection-end="1403" vertical-scroll-proportion="-2.3076923">
-          <folding>
-            <marker date="1397341572324" expanded="false" signature="3094:3124" placeholder="..." />
-            <marker date="1397341572324" expanded="false" signature="3562:3574" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="17" selection-start="263" selection-end="263" vertical-scroll-proportion="0.0">
@@ -831,9 +806,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pages/base_handler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="525" column="37" selection-start="21447" selection-end="21447" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/PublicProfile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="130" column="52" selection-start="4888" selection-end="4888" vertical-scroll-proportion="0.5795053">
+        <state line="128" column="61" selection-start="4699" selection-end="4699" vertical-scroll-proportion="-13.692307">
           <folding>
             <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#4;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -847,10 +829,34 @@
             <element signature="n#style#0;n#div#8;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#table#0;n#div#8;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#9;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#div#9;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#1;n#table#0;n#div#9;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#2;n#tr#1;n#table#0;n#div#9;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#3;n#tr#1;n#table#0;n#div#9;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="32" selection-start="1403" selection-end="1403" vertical-scroll-proportion="-1.4230769">
+          <folding>
+            <marker date="1397341572324" expanded="false" signature="3094:3124" placeholder="..." />
+            <marker date="1397341572324" expanded="false" signature="3562:3574" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/AccountInfo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="166" selection-start="3856" selection-end="3856" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/AccountInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="37" selection-start="4048" selection-end="4048" vertical-scroll-proportion="1.1401649">
+          <folding />
         </state>
       </provider>
     </entry>

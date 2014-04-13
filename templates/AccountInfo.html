@@ -57,13 +57,73 @@
             <Form method="post">
                 <fieldset>
                     {% for info in infoList %}
-                    {% if not info[1]: %}
-                    <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="" name="{{ info[0] }}">
-                    {% else: %}
-                    {% if info[0] == 'Email': %}
-                    <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' readonly value="{{ info[1] }}" name="{{ info[0] }}">
-                    {% else: %}
-                    <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="{{ info[1] }}" name="{{ info[0] }}">
+                    {% if info[0] == 'Location': %}
+                        <label for={{ info[1] }}>{{ info[0] }}</label><select name="{{ info[0] }}">
+                            {% if info[1] == "N/A" %}
+                                <option selected="selected" value="N/A">N/A</option>
+                            {% else %}
+                                <option value="N/A">N/A</option>
+                            {% endif %}
+
+                            {% if info[1] == "North of Main Quad" %}
+                                <option selected="selected" value="North of Main Quad">North of Main Quad</option>
+                            {% else %}
+                                <option value="North of Main Quad">North of Main Quad</option>
+                            {% endif %}
+
+                            {% if info[1] == "Northeast of Main Quad" %}
+                                <option selected="selected" value="Northeast of Main Quad">Northeast of Main Quad</option>
+                            {% else %}
+                                <option value="Northeast of Main Quad">Northeast of Main Quad</option>
+                            {% endif %}
+
+                            {% if info[1] == "Northwest of Main Quad" %}
+                                <option selected="selected" value="Northwest of Main Quad">Northwest of Main Quad</option>
+                            {% else %}
+                                <option value="Northwest of Main Quad">Northwest of Main Quad</option>
+                            {% endif %}
+
+                            {% if info[1] == "East of Main Quad" %}
+                                <option selected="selected" value="East of Main Quad">East of Main Quad</option>
+                            {% else %}
+                                <option value="East of Main Quad">East of Main Quad</option>
+                            {% endif %}
+
+                            {% if info[1] == "West of Main Quad" %}
+                                <option selected="selected" value="West of Main Quad">West of Main Quad</option>
+                            {% else %}
+                                <option value="West of Main Quad">West of Main Quad</option>
+                            {% endif %}
+
+                            {% if info[1] == "South of Main Quad" %}
+                                <option selected="selected" value="South of Main Quad">South of Main Quad</option>
+                            {% else %}
+                                <option value="South of Main Quad">South of Main Quad</option>
+                            {% endif %}
+
+                            {% if info[1] == "Southeast of Main Quad" %}
+                                <option selected="selected" value="Southeast of Main Quad">Southeast of Main Quad</option>
+                            {% else %}
+                                <option value="Southeast of Main Quad">Southeast of Main Quad</option>
+                            {% endif %}
+
+                            {% if info[1] == "Southwest of Main Quad" %}
+                                <option selected="selected" value="Southwest of Main Quad">Southwest of Main Quad</option>
+                            {% else %}
+                                <option value="Southwest of Main Quad">Southwest of Main Quad</option>
+                            {% endif %}
+
+
+                        </select>
+                    {% else %}
+                        {% if not info[1]: %}
+                        <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="" name="{{ info[0] }}">
+                        {% else: %}
+                        {% if info[0] == 'Email': %}
+                        <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' readonly value="{{ info[1] }}" name="{{ info[0] }}">
+                        {% else: %}
+                        <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="{{ info[1] }}" name="{{ info[0] }}">
+                        {% endif %}
                     {% endif %}
 
 

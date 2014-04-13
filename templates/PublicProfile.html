@@ -129,13 +129,15 @@
                     <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
                         <tr><td><b>Price</b></td><td>{{ tutorInfo[0][1] }}</td></tr>
                         <tr style="border-right: 0px; border-right-color:white;"><td><b>Rating</b></td><td>{{ tutorInfo[0][2] }}</td>
-                        <td style="border: 0px;"><form>
+                        <td style="border: 0px;"><form method="post">
                             <input type="hidden" name="upvote" value="{{ publicProfile[0][1] }}">
                             <input type="submit" name="upvoteSubmit" value="+">
                         </form></td>
                             <td style="border: 0px;">
-                                <input type="hidden" name="downvote" value="{{ publicProfile[0][1] }}">
-                                <input type="submit" name="downvoteSubmit" value="-">
+                                <form method="post">
+                                    <input type="hidden" name="downvote" value="{{ publicProfile[0][1] }}">
+                                    <input type="submit" name="downvoteSubmit" value="-">
+                                </form>
                             </td>
                         </tr>
                         <tr><td><b>Availability</b></td><td>{{ tutorInfo[0][3] }}</td></tr>
