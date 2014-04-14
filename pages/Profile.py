@@ -100,17 +100,25 @@ class Profile(base_handler.BaseHandler):
 
         tutorInfo = []
         cur.execute(
-            "SELECT ClassName,Price,Rating,Availability,OtherNotes " +
-            "FROM Class NATURAL JOIN TutorClassList NATURAL JOIN Tutor " +
+            "SELECT Price,Rating,Availability,OtherNotes " +
+            "FROM Tutor " +
             "WHERE Email='%s'" % userInfo[1]
         )
 
         for row in cur.fetchall():
             tutorInfo.append(row)
 
+        cur.execute("SELECT ClassName FROM Class NATURAL JOIN TutorClassList WHERE Email='%s'" % userInfo[1])
+
+        tutorClasses = []
+        for row in cur.fetchall():
+            tutorClasses.append(row)
+
+        logging.info('Tutor Info: ' + str(tutorInfo))
+        logging.info('Tutor Classes: ' + str(tutorClasses))
 
          
         
         info = [['Email', userInfo[1]], ['Name', userInfo[2]], ['Major', userInfo[4]], ['Class Status', userInfo[5]], ['Gender', userInfo[6]], ['Location', userInfo[7]]]
-        context = {'tutorInfo': tutorInfo, 'groupFinder': '/groupFinder/', 'tutor': tutor, 'classSearch': '/classSearch/', 'groups': groups, 'profilePic': profilePic, 'classes': classes, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'profile': '/profile/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
+        context = {'tutorClasses': tutorClasses, 'tutorInfo': tutorInfo, 'groupFinder': '/groupFinder/', 'tutor': tutor, 'classSearch': '/classSearch/', 'groups': groups, 'profilePic': profilePic, 'classes': classes, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'profile': '/profile/' + sessionkey, 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
         self.render("Profile.html", **context)
