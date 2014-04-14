@@ -7,7 +7,7 @@
             <h2>Group Finder</h2>
             <span class="byline"></span>
         </div>
-        <div id="page" class="container">
+        <div align="center" id="page" class="container">
             <Form method="post">
                 <fieldset>
                     <label>Class:</label><select name="classList">
@@ -19,14 +19,14 @@
                     <label>Preferred Maximum Group Size:</label><input type="text" name="prefMaxSize" value=""><br/>
                     <br/>
                     <input type="hidden" name="groupFind" value="groupFind">
-
+                    <input style="margin-left: 50%; text-align: center;" type="submit" name="submitGroupFind" value="Find Groups">
                 </fieldset>
-                <input style="margin-left: 50%; text-align: center;" type="submit" name="submitGroupFind" value="Find Groups">
+
 
 
             </Form>
-
-            <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
+            <br/>
+            <table align="center" style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
                 <tr>
                     <td><b>Group Name</b></td>
                     <td><b>Overall Match</b></td>
@@ -37,11 +37,11 @@
 
                 {% for group in groupInfo %}
                     <tr>
-                        <td><a href="#">{{ group[0] }}</a></td>
-                        <td>{{ group[1]}}%</td>
+                        <td><a style="color: blue; text-decoration: underline;" href="/group/{{ group[0] }}">{{ group[1] }}</a></td>
                         <td>{{ group[2]}}%</td>
                         <td>{{ group[3]}}%</td>
                         <td>{{ group[4]}}%</td>
+                        <td>{{ group[5]}}%</td>
                     </tr>
                 {% endfor %}
             </table>

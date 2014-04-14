@@ -7,7 +7,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/BaseLoggedIn.html" afterPath="$PROJECT_DIR$/templates/BaseLoggedIn.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/ClassPage.py" afterPath="$PROJECT_DIR$/pages/ClassPage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/ClassSearch.py" afterPath="$PROJECT_DIR$/pages/ClassSearch.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/CreateGroup.html" afterPath="$PROJECT_DIR$/templates/CreateGroup.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/CreateGroup.py" afterPath="$PROJECT_DIR$/pages/CreateGroup.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Group.html" afterPath="$PROJECT_DIR$/templates/Group.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/Group.py" afterPath="$PROJECT_DIR$/pages/Group.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/Profile.html" afterPath="$PROJECT_DIR$/templates/Profile.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/Profile.py" afterPath="$PROJECT_DIR$/pages/Profile.py" />
@@ -30,7 +32,7 @@
     <file path="/home.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1395421297498" ignored="false" />
     <file path="/__init__.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397420076360" ignored="false" />
     <file path="/default.css" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397413397394" ignored="false" />
-    <file path="/base_handler.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397422239864" ignored="false" />
+    <file path="/base_handler.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397432217047" ignored="false" />
     <file path="/boilerplate.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1395607578154" ignored="false" />
     <file path="/BaseLoggedIn.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397419897241" ignored="false" />
     <file path="/AccountInfo.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397419510884" ignored="false" />
@@ -55,8 +57,8 @@
     <file path="/TutorDetails.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397332610924" ignored="false" />
     <file path="/PublicProfile.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397337686685" ignored="false" />
     <file path="/PublicProfile.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397418014129" ignored="false" />
-    <file path="/GroupFinder.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397423462462" ignored="false" />
-    <file path="/GroupFinder.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397423423403" ignored="false" />
+    <file path="/GroupFinder.py" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397433320220" ignored="false" />
+    <file path="/GroupFinder.html" changelist="87fa3b62-50f5-48ad-958c-b962d9e731ff" time="1397433610141" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,19 +137,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Profile.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/Profile.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="105" column="51" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupFinder.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="GroupFinder.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/GroupFinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="43" selection-start="1455" selection-end="1455" vertical-scroll-proportion="0.67053366">
+            <state line="47" column="42" selection-start="1502" selection-end="1502" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -156,7 +149,7 @@
       <file leaf-file-name="base_handler.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/base_handler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="562" column="36" selection-start="23015" selection-end="23015" vertical-scroll-proportion="0.0">
+            <state line="599" column="17" selection-start="24726" selection-end="24726" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -164,12 +157,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupFinder.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="GroupFinder.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/GroupFinder.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="38" selection-start="1849" selection-end="1849" vertical-scroll-proportion="-28.115385">
+            <state line="39" column="80" selection-start="1734" selection-end="1734" vertical-scroll-proportion="0.54063606">
               <folding>
                 <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#td#0;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassSearch.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/ClassSearch.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="106" selection-start="1535" selection-end="1535" vertical-scroll-proportion="-24.192308">
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#td#2;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -262,8 +268,8 @@
         <option value="$PROJECT_DIR$/pages/TutorDetails.py" />
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/pages/base_handler.py" />
-        <option value="$PROJECT_DIR$/templates/GroupFinder.html" />
         <option value="$PROJECT_DIR$/pages/GroupFinder.py" />
+        <option value="$PROJECT_DIR$/templates/GroupFinder.html" />
       </list>
     </option>
   </component>
@@ -745,13 +751,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/BaseLoggedIn.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="113" selection-start="1009" selection-end="1009" vertical-scroll-proportion="-13.076923">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/AccountInfo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="40" selection-start="1851" selection-end="1851" vertical-scroll-proportion="-1.9230769">
@@ -791,7 +790,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/Profile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="51" selection-start="3410" selection-end="3410" vertical-scroll-proportion="0.0">
+        <state line="114" column="51" selection-start="3734" selection-end="3734" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -805,33 +804,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/TutorDetails.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="77" selection-start="1116" selection-end="1116" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/ClassPage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="66" column="51" selection-start="2093" selection-end="2093" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="82" selection-start="2248" selection-end="2248" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/base_handler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="562" column="36" selection-start="23015" selection-end="23015" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -866,19 +842,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/GroupFinder.html">
+    <entry file="file://$PROJECT_DIR$/pages/TutorDetails.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="38" selection-start="1849" selection-end="1849" vertical-scroll-proportion="-28.115385">
-          <folding>
-            <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state line="36" column="77" selection-start="1116" selection-end="1116" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="82" selection-start="2248" selection-end="2248" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/GroupFinder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="43" selection-start="1455" selection-end="1455" vertical-scroll-proportion="0.67053366">
+        <state line="47" column="42" selection-start="1502" selection-end="1502" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/ClassSearch.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="106" selection-start="1535" selection-end="1535" vertical-scroll-proportion="-24.192308">
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#2;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/base_handler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="599" column="17" selection-start="24726" selection-end="24726" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/GroupFinder.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="80" selection-start="1734" selection-end="1734" vertical-scroll-proportion="0.54063606">
+          <folding>
+            <element signature="n#style#0;n#table#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#td#0;n#tr#1;n#table#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

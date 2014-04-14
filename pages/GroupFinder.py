@@ -18,7 +18,7 @@ from pages import base_handler
 
 class GroupFinder(base_handler.BaseHandler):
     def get(self, searchQuery=''):
-        #logging.info('courseInfo: ' + searchQuery)
+        logging.info('QUERY: ' + searchQuery)
         sessionkey = self.request.cookies.get('auth')
 
         if (os.getenv('SERVER_SOFTWARE') and
@@ -39,12 +39,21 @@ class GroupFinder(base_handler.BaseHandler):
 
         classes = []
         cur.execute("SELECT Class.ClassID,Class.ClassName FROM UserClassList NATURAL JOIN Class WHERE UserClassList.Email='%s'" % userInfo[1])
-
+        groupInfo = []
         for row in cur.fetchall():
             classes.append(row)
+        if searchQuery != '':
 
-        groupInfo = []
+            parse = searchQuery.split('-')
+            newParse = []
+            for split in parse:
+                newParse.append(split.split('_'))
 
-        context = {'groupInfo': groupInfo, 'classList': classes, 'groupFinder': '/groupFinder/', 'classSearch': '/classSearch/', 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
+            logging.info('PARSE: ' + str(newParse))
+
+            newParse = newParse[:-1]
+
+
+        context = {'groupInfo': newParse, 'classList': classes, 'groupFinder': '/groupFinder/', 'classSearch': '/classSearch/', 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
         self.render("GroupFinder.html", **context)
 
