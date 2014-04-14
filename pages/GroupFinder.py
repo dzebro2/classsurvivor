@@ -40,12 +40,13 @@ class GroupFinder(base_handler.BaseHandler):
         classes = []
         cur.execute("SELECT Class.ClassID,Class.ClassName FROM UserClassList NATURAL JOIN Class WHERE UserClassList.Email='%s'" % userInfo[1])
         groupInfo = []
+        newParse = []
         for row in cur.fetchall():
             classes.append(row)
         if searchQuery != '':
 
             parse = searchQuery.split('-')
-            newParse = []
+
             for split in parse:
                 newParse.append(split.split('_'))
 
