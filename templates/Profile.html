@@ -115,12 +115,13 @@
                         <td><b> Class Name </b></td>
                     </tr>
 
-
-                    {% for info in tutorInfo %}
-                    <tr>
-                        <td>{{info[0]}}</td>
-                    </tr>
-                    {% endfor %}
+                    {% if tutor %}
+                        {% for info in tutorInfo %}
+                        <tr>
+                            <td>{{info[0]}}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
 
 
 
@@ -131,12 +132,14 @@
 
 
             <div style="width:300px; float:left; margin-left:150px;">
-                    <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
-                        <tr><td><b>Price</b></td><td>{{ tutorInfo[0][1] }}</td></tr>
-                        <tr style="border-right: 0px; border-right-color:white;"><td><b>Rating</b></td><td>{{ tutorInfo[0][2] }}</td></tr>
-                        <tr><td><b>Availability</b></td><td>{{ tutorInfo[0][3] }}</td></tr>
-                        <tr><td><b>Other Notes</b></td><td>{{ tutorInfo[0][4] }}</td></tr>
-                    </table>
+                    {% if tutor %}
+                        <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
+                            <tr><td><b>Price</b></td><td>{{ tutorInfo[0][1] }}</td></tr>
+                            <tr style="border-right: 0px; border-right-color:white;"><td><b>Rating</b></td><td>{{ tutorInfo[0][2] }}</td></tr>
+                            <tr><td><b>Availability</b></td><td>{{ tutorInfo[0][3] }}</td></tr>
+                            <tr><td><b>Other Notes</b></td><td>{{ tutorInfo[0][4] }}</td></tr>
+                        </table>
+                    {% endif %}
 
             </div>
 
