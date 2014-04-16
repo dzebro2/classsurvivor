@@ -14,12 +14,21 @@
                         {% for class in classList %}
                             <option value="{{ class[0] }}">{{ class[1] }}</option>
                         {% endfor %}
+
+                        {% if classList == [] %}
+                            <option value="noClasses">You are not in any classes!</option>
+                        {% endif %}
                     </select>
                     <label>Preferred Minimum Group Size:</label><input type="text" value="" name="prefMinSize">
                     <label>Preferred Maximum Group Size:</label><input type="text" name="prefMaxSize" value=""><br/>
                     <br/>
                     <input type="hidden" name="groupFind" value="groupFind">
-                    <input style="margin-left: 50%; text-align: center;" type="submit" name="submitGroupFind" value="Find Groups">
+                    {% if classList == [] %}
+                        <input style="margin-left: 50%; text-align: center;" disabled type="submit" name="submitGroupFind" value="Find Groups">
+                    {% else %}
+                        <input style="margin-left: 50%; text-align: center;" type="submit" name="submitGroupFind" value="Find Groups">
+                    {% endif %}
+
                 </fieldset>
 
 
