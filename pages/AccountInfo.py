@@ -80,7 +80,11 @@ class AccountInfo(base_handler.BaseHandler):
                 cur.execute(statement)
 
                 for row in cur:
-                    classes.append(row)
+                    change = []
+                    for item in row:
+                        change.append(item)
+                    change[3] = change[3].replace('&#039;', "'")
+                    classes.append(change)
                 classes.sort()
             except:
                 classes = []

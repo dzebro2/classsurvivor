@@ -64,6 +64,6 @@ class ClassPage(base_handler.BaseHandler):
 
 
 
-        context = {'groupFinder': '/groupFinder/', 'tutors': tutors, 'classSearch': '/classSearch/', 'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
+        context = {'groupFinder': '/groupFinder/', 'tutors': tutors, 'classSearch': '/classSearch/', 'groups': groups, 'ClassID': str(courseID), 'professorName': professorName.replace('&#039;', "'"), 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
         self.render("Class.html", **context)
 

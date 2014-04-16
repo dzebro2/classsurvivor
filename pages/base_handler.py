@@ -444,7 +444,14 @@ class BaseHandler(webapp2.RequestHandler):
         deptCode = self.request.get('searchDeptCode')
         courseNum = self.request.get('searchCourseNumber')
 
-        self.redirect('/classSearch/' + str(deptCode) + '_' + str(courseNum))
+        if deptCode and not courseNum:
+            self.redirect('/classSearch/' + str(deptCode) + '~')
+        elif not deptCode and courseNum:
+            self.redirect('/classSearch/' + str(courseNum) + '=')
+        elif deptCode and courseNum:
+            self.redirect('/classSearch/' + str(deptCode) + '_' + str(courseNum))
+        else:
+            self.redirect('/classSearch/')
 
     def addTutorPost(self):
         logging.info("inaddtutorpost")

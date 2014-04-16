@@ -39,11 +39,36 @@ class ClassSearch(base_handler.BaseHandler):
 
         searchResults = []
         if searchRes != '':
-            deptCode = searchRes[0:searchRes.find('_')]
-            courseNum = searchRes[searchRes.find('_')+1:searchRes.find('_')+4]
-            cur.execute("SELECT ClassDepartment,CourseNumber,ClassName,ProfessorName,ClassID FROM Class WHERE ClassDepartment='%s' AND CourseNumber=%i" % (deptCode, int(courseNum)))
-            for row in cur.fetchall():
-                searchResults.append(row)
+            logging.info('FOUND ~ AT: ' + str(searchRes.find('~')))
+            logging.info('FOUND = AT: ' + str(searchRes.find('=')))
+            if searchRes.find('~') != -1:
+                deptCode = searchRes[0:searchRes.find('~')]
+                cur.execute("SELECT ClassDepartment,CourseNumber,ClassName,ProfessorName,ClassID FROM Class WHERE ClassDepartment='%s'" % (deptCode,))
+                for row in cur.fetchall():
+                    change = []
+                    for item in row:
+                        change.append(item)
+                    change[3] = change[3].replace('&#039;', "'")
+                    searchResults.append(change)
+            elif searchRes.find('=') != -1:
+                courseNum = searchRes[0:searchRes.find('=')]
+                cur.execute("SELECT ClassDepartment,CourseNumber,ClassName,ProfessorName,ClassID FROM Class WHERE CourseNumber=%i" % (int(courseNum),))
+                for row in cur.fetchall():
+                    change = []
+                    for item in row:
+                        change.append(item)
+                    change[3] = change[3].replace('&#039;', "'")
+                    searchResults.append(change)
+            else:
+                deptCode = searchRes[0:searchRes.find('_')]
+                courseNum = searchRes[searchRes.find('_')+1:searchRes.find('_')+4]
+                cur.execute("SELECT ClassDepartment,CourseNumber,ClassName,ProfessorName,ClassID FROM Class WHERE ClassDepartment='%s' AND CourseNumber=%i" % (deptCode, int(courseNum)))
+                for row in cur.fetchall():
+                    change = []
+                    for item in row:
+                        change.append(item)
+                    change[3] = change[3].replace('&#039;', "'")
+                    searchResults.append(change)
 
 
 
