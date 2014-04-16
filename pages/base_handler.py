@@ -414,6 +414,7 @@ class BaseHandler(webapp2.RequestHandler):
         if joinable:
             try:
                 cur.execute("INSERT INTO UserGroupList VALUES ('%s', %i)" % (email, int(groupID)))
+                cur.execute("UPDATE Groups SET Size=Size+1 WHERE IDNumber=%i" % (int(groupID),))
                 myDB.commit()
             except:
                 myDB.rollback()

@@ -16,6 +16,10 @@
             </form>
         {% else %}
             <p style="float:right;">You are in this group</p>
+            <div class="btn-group">
+                <input name="group1" type="radio" checked onclick="swap('sidebar2', 'polls')">Comments
+                <input name="group1" type="radio" onclick="swap('polls', 'sidebar2')">Polls
+            </div>
         {% endif %}
 
         <div id="page" class="container">
@@ -57,7 +61,15 @@
                 </table>
 
             </div>
-
+            <div id="polls" style="display:none;">
+                <p align="center"><b>Post a Poll:</b></p>
+                <form align="center" method="post">
+                    <textarea name="pollQuestion" cols="40" placeholder="Type Question Here"></textarea><br/>
+                    <textarea name="pollChoices" rows="5" cols="40" placeholder="Enter Choices as comma separated list"></textarea><br/>
+                    <input type="hidden" name="createPoll" value="{{ groupID }}">
+                    <input align="center" type="submit" name="submitPoll" value="Create Poll">
+                </form>
+            </div>
             <div id="sidebar2">
             {% if inGroup %}
                 <p align="center"><b>Post Comment:</b></p>
@@ -123,5 +135,10 @@
 {% endblock %}
 
 {% block jsblock %}
-
+<script>
+    function swap(one, two) {
+        document.getElementById(one).style.display = 'block';
+        document.getElementById(two).style.display = 'none';
+    }
+</script>
 {% endblock %}
