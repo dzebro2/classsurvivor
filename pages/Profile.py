@@ -108,7 +108,7 @@ class Profile(base_handler.BaseHandler):
         for row in cur.fetchall():
             tutorInfo.append(row)
 
-        cur.execute("SELECT ClassName FROM Class NATURAL JOIN TutorClassList WHERE Email='%s'" % userInfo[1])
+        cur.execute("SELECT ClassName,ClassID FROM Class NATURAL JOIN TutorClassList WHERE Email='%s'" % userInfo[1])
 
         tutorClasses = []
         for row in cur.fetchall():

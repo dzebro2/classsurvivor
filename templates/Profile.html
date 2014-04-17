@@ -114,12 +114,18 @@
             <div style="width:300px; float:left; margin-left:150px;">
                 <table style="float:left; width:300px; border: 1px solid black; border-collapse: collapse;">
                     <tr>
+                        <td><b>  </b></td>
                         <td><b> Class Name </b></td>
                     </tr>
 
                     {% if tutor %}
                         {% for info in tutorClasses %}
                         <tr>
+                            <td><form method="post">
+                                <input type="hidden" name="deleteTutorClass" value="deleteTutorClass">
+                                <input type="hidden" name="delete" value="{{info[1]}}">
+                                <input type="submit" value="X" style="background-color: black; color: red;">
+                            </form></td>
                             <td>{{info[0]}}</td>
                         </tr>
                         {% endfor %}

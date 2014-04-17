@@ -115,6 +115,50 @@
 
 
                         </select>
+                    {% elif info[0] == 'Gender' %}
+                        <label>{{info[0]}}: </label><select name="{{info[0]}}">
+                            {% if info[1] == 'Male' %}
+                                <option selected="selected" value="Male">Male</option>
+                            {% else %}
+                                <option value="Male">Male</option>
+                            {% endif %}
+
+                            {% if info[1] == 'Female' %}
+                            <option selected="selected" value="Female">Female</option>
+                            {% else %}
+                            <option value="Female">Female</option>
+                            {% endif %}
+
+
+                        </select>
+                    {% elif info[0] == 'Class Status' %}
+                            <label>{{info[0]}}: </label><select name="{{info[0]}}">
+                            {% if info[1] == 'Freshman' %}
+                            <option selected="selected" value="Freshman">Freshman</option>
+                            {% else %}
+                            <option value="Freshman">Freshman</option>
+                            {% endif %}
+
+                            {% if info[1] == 'Sophomore' %}
+                            <option selected="selected" value="Sophomore">Sophomore</option>
+                            {% else %}
+                            <option value="Sophomore">Sophomore</option>
+                            {% endif %}
+
+                            {% if info[1] == 'Junior' %}
+                            <option selected="selected" value="Junior">Junior</option>
+                            {% else %}
+                            <option value="Junior">Junior</option>
+                            {% endif %}
+
+                            {% if info[1] == 'Senior' %}
+                            <option selected="selected" value="Senior">Senior</option>
+                            {% else %}
+                            <option value="Senior">Senior</option>
+                            {% endif %}
+
+
+                        </select>
                     {% else %}
                         {% if not info[1]: %}
                         <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="" name="{{ info[0] }}">

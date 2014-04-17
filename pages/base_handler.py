@@ -609,6 +609,43 @@ class BaseHandler(webapp2.RequestHandler):
 
         self.redirect(url)
 
+    def deleteTutorClassPost(self):
+        logging.info('delete class: ' + self.request.get('delete'))
+
+
+        if (os.getenv('SERVER_SOFTWARE') and
+                os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+            myDB = MySQLdb.connect(unix_socket='/cloudsql/class--survivor:survivor', db='akkowal2_survivor', user='root')
+        else:
+            myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor", user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        sessionKey = self.request.cookies.get('auth')
+
+        cur.execute("SELECT Email FROM User WHERE SessionKey='%s'" % sessionKey)
+
+        email = ''
+
+        for row in cur.fetchall():
+            email = row[0]
+
+        logging.info('got email: ' + email)
+
+        courseID = self.request.get('delete')
+
+
+        logging.info('got course id: ' + str(courseID))
+        statement = "DELETE FROM TutorClassList WHERE Email='%s' AND ClassID=%i" % (email, int(courseID))
+        logging.info(statement)
+        try:
+            cur.execute(statement)
+            myDB.commit()
+        except:
+            logging.info('could not delete class')
+            myDB.rollback()
+
+        self.redirect('/profile/' + sessionKey)
+
     def post(self, SK=None, results=None, update=None):
         if self.request.get('register'):
             self.registerPost()
@@ -649,5 +686,7 @@ class BaseHandler(webapp2.RequestHandler):
             self.downvotePost()
         elif self.request.get('groupFind'):
             self.groupFinderPost()
+        elif self.request.get('deleteTutorClass'):
+            self.deleteTutorClassPost()
 
 

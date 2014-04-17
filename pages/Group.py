@@ -89,7 +89,9 @@ class Group(base_handler.BaseHandler):
         for row in cur.fetchall():
             if row[1] == userInfo[1]:
                 inGroup = True
-            members.append(row)
+                members = [row] + members
+            else:
+                members.append(row)
 
         description=""
         cur.execute("SELECT Description FROM Groups WHERE IDNumber=%i" % (int(groupID),))

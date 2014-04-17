@@ -82,13 +82,13 @@
                 <br/>
 
                     {% for parentCom in comments %}
-                        <div class="well">
+                        <div class="well" style="background-color: orangered;">
                             <label align="left" style="text-align: left;">{{ parentCom[0] }}</label><p align="left" style="text-align: left;">{{ parentCom[1] }}</p>
                             {% for reply in replyComments %}
 
                                 {% if reply[0] == parentCom[2] %}
 
-                                    <div class="well">
+                                    <div class="well" style="background-color: lightblue;">
                                         <label align="left" style="text-align: left;">{{ reply[1] }}</label><p align="left" style="text-align: left;">{{ reply[2] }}</p>
                                     </div>
                                 {% endif %}
