@@ -159,6 +159,16 @@
 
 
                         </select>
+                    {% elif info[0] == 'Major' %}
+                        <label>{{info[0]}}: </label><select style="width:150px;" name="{{info[0]}}">
+                            {% for major in majors %}
+                                {% if major == info[1] %}
+                                    <option selected="selected" value="{{major}}">{{major}}</option>
+                                {% else %}
+                                    <option  value="{{major}}">{{major}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
                     {% else %}
                         {% if not info[1]: %}
                         <label for={{ info[1] }}>{{ info[0] }}: </label><input type='text' value="" name="{{ info[0] }}">

@@ -98,8 +98,13 @@ class AccountInfo(base_handler.BaseHandler):
         departments.sort()
         logging.info(departments)
 
+        majors = []
+        cur.execute("SELECT Name FROM Majors")
+        for row in  cur.fetchall():
+            majors.append(row[0])
+
 
         info = [['Email', userInfo[1]], ['Name', userInfo[2]], ['Major', userInfo[4]], ['Class Status', userInfo[5]], ['Gender', userInfo[6]], ['Location', userInfo[7]]]
-        context = {'groupFinder': '/groupFinder/', 'classSearch': '/classSearch/', 'departments': departments, 'profile': '/profile/' + sessionkey, 'searchResults': classes, 'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
+        context = {'majors': majors, 'groupFinder': '/groupFinder/', 'classSearch': '/classSearch/', 'departments': departments, 'profile': '/profile/' + sessionkey, 'searchResults': classes, 'updated': update, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2], 'infoList': info}
         self.render("AccountInfo.html", **context)
 
