@@ -156,7 +156,21 @@ class BaseHandler(webapp2.RequestHandler):
         cookie = self.request.cookies.get('auth')
 
         try:
+            cur.execute("SELECT Email FROM User WHERE SessionKey=%s", (cookie,))
+        except:
+            logging.info('ruh roh')
+        email = None
+        for row in cur:
+            email = row[0]
+
+        try:
             cur.execute("DELETE FROM User WHERE SessionKey='%s'" % (cookie,))
+            cur.execute("DELETE FROM Comments WHERE PosterEmail='%s'" % (email,))
+            cur.execute("DELETE FROM Groups WHERE LeaderEmail='%s'" % (email,))
+            cur.execute("DELETE FROM Tutor WHERE Email='%s'" % (email,))
+            cur.execute("DELETE FROM TutorClassList WHERE Email='%s'" % (email,))
+            cur.execute("DELETE FROM UserClassList WHERE Email='%s'" % (email,))
+            cur.execute("DELETE FROM UserGroupList WHERE Email='%s'" % (email,))
             myDB.commit()
             self.response.delete_cookie('auth')
             self.redirect('/home')
