@@ -117,6 +117,12 @@
                         </select>
                     {% elif info[0] == 'Gender' %}
                         <label>{{info[0]}}: </label><select name="{{info[0]}}">
+                            {% if info[1] == 'Other' %}
+                                <option selected="selected" value="Other">Other</option>
+                            {% else %}
+                                <option value="Other">Other</option>
+                            {% endif %}
+
                             {% if info[1] == 'Male' %}
                                 <option selected="selected" value="Male">Male</option>
                             {% else %}

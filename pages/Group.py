@@ -98,6 +98,45 @@ class Group(base_handler.BaseHandler):
         for row in cur.fetchall():
             description = row
 
-        context = {'description': description, 'groupFinder': '/groupFinder/', 'classSearch': '/classSearch/', 'leader': isLeader, 'inGroup': inGroup, 'members': members, 'replyComments': replys, 'comments': comments, 'groupID': groupID, 'groupName': groupName, 'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
+        polls = []
+
+        cur.execute("SELECT PollID,Name,Question FROM Polls JOIN User ON PosterEmail=Email WHERE GroupID=%i" % (int(groupID),))
+        for row in cur.fetchall():
+            initList = []
+            initList.append(row[0])
+            initList.append(row[1])
+            initList.append(row[2])
+            polls.append(copy.deepcopy(initList))
+
+        for poll in polls:
+            pollID = int(poll[0])
+            cur.execute("SELECT Choice, ChoiceID FROM PollChoices WHERE PollChoices.PollID=%i ORDER BY ChoiceID" % (pollID,))
+            choiceList = []
+            choiceIDList = []
+            votesList = []
+            for row in cur.fetchall():
+                choiceList.append(row[0])
+                choiceIDList.append(row[1])
+                #votesList.append(row[1])
+
+            for choiceID in choiceIDList:
+                cur.execute("SELECT COUNT(DISTINCT Email) FROM PollVotes WHERE ChoiceID=%i" % int(choiceID))
+                for row in cur.fetchall():
+                    votesList.append(int(row[0]))
+
+            poll.append(copy.deepcopy(choiceList))
+            poll.append(copy.deepcopy(votesList))
+            poll.append(copy.deepcopy(choiceIDList))
+
+        polls = polls[::-1]
+        logging.info(str(polls))
+
+
+
+
+
+
+
+        context = {'polls': polls, 'description': description, 'groupFinder': '/groupFinder/', 'classSearch': '/classSearch/', 'leader': isLeader, 'inGroup': inGroup, 'members': members, 'replyComments': replys, 'comments': comments, 'groupID': groupID, 'groupName': groupName, 'groups': groups, 'ClassID': str(courseID), 'professorName': professorName, 'className': className, 'profile': '/profile/' + sessionkey, 'time': str(date.today()), 'accountInfo': '/accountinfo/' + sessionkey + '/ /', 'signout': '/signout/' + sessionkey, 'name': userInfo[2]}
         self.render("Group.html", **context)
 

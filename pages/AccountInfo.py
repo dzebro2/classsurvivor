@@ -99,7 +99,7 @@ class AccountInfo(base_handler.BaseHandler):
         logging.info(departments)
 
         majors = []
-        cur.execute("SELECT Name FROM Majors")
+        cur.execute("SELECT DISTINCT Name FROM Majors")
         for row in  cur.fetchall():
             majors.append(row[0])
 

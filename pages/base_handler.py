@@ -570,6 +570,12 @@ class BaseHandler(webapp2.RequestHandler):
         classID = self.request.get('classList')
         minSize = self.request.get('prefMinSize')
         maxSize = self.request.get('prefMaxSize')
+        if not minSize:
+            minSize = 0
+
+        if not maxSize:
+            maxSize = 0
+
         sessionKey = self.request.cookies.get('auth')
 
         if (os.getenv('SERVER_SOFTWARE') and
@@ -610,9 +616,9 @@ class BaseHandler(webapp2.RequestHandler):
             finalOutput[2].append(int((finalOutput[3][counter]+finalOutput[4][counter]+finalOutput[5][counter])/3))
             counter += 1
 
-        logging.info('ClassID: ' + classID)
-        logging.info('MinSize: ' + minSize)
-        logging.info('MaxSize: ' + maxSize)
+        logging.info('ClassID: ' + str(classID))
+        logging.info('MinSize: ' + str(minSize))
+        logging.info('MaxSize: ' + str(maxSize))
 
         url = '/groupFinder/'
 
@@ -660,6 +666,76 @@ class BaseHandler(webapp2.RequestHandler):
 
         self.redirect('/profile/' + sessionKey)
 
+    def createPollPost(self):
+        if (os.getenv('SERVER_SOFTWARE') and
+                os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+            myDB = MySQLdb.connect(unix_socket='/cloudsql/class--survivor:survivor', db='akkowal2_survivor', user='root')
+        else:
+            myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor", user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        sessionKey = self.request.cookies.get('auth')
+
+        cur.execute("SELECT Email FROM User WHERE SessionKey='%s'" % sessionKey)
+
+        email = ''
+
+        for row in cur.fetchall():
+            email = row[0]
+
+        groupID = self.request.get('createPoll')
+        question = self.request.get('pollQuestion')
+        choices = self.request.get('pollChoices')
+
+        choiceList = choices.split(',')
+
+        cur.execute("INSERT INTO Polls (GroupID, PosterEmail, Question) VALUES (%i, '%s', '%s')" % (int(groupID), email, question))
+        cur.execute("SELECT LAST_INSERT_ID() FROM Groups")
+
+        lastID = -1
+        for row in cur.fetchall():
+            lastID = int(row[0])
+
+        for choice in choiceList:
+            cur.execute("INSERT INTO PollChoices (PollID, Choice) VALUES (%i, '%s')" % (lastID, choice))
+
+        myDB.commit()
+
+        self.redirect('/group/' + str(groupID))
+
+    def pollVotePost(self):
+        if (os.getenv('SERVER_SOFTWARE') and
+                os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/')):
+            myDB = MySQLdb.connect(unix_socket='/cloudsql/class--survivor:survivor', db='akkowal2_survivor', user='root')
+        else:
+            myDB = MySQLdb.connect(host="engr-cpanel-mysql.engr.illinois.edu", port=3306, db="akkowal2_survivor", user="akkowal2_drew", passwd="cs411sp14")
+        cur = myDB.cursor()
+
+        sessionKey = self.request.cookies.get('auth')
+
+        cur.execute("SELECT Email FROM User WHERE SessionKey='%s'" % sessionKey)
+
+        email = ''
+
+        for row in cur.fetchall():
+            email = row[0]
+
+        pollChoiceID = self.request.get('pollVote')
+
+        pollID = int(pollChoiceID[0:pollChoiceID.find('_')])
+        choiceID = int(pollChoiceID[pollChoiceID.find('_')+1:])
+        groupID = int(self.request.get('groupID'))
+
+        try:
+            cur.execute("DELETE FROM PollVotes WHERE Email='%s' AND PollID=%i" % (email,pollID))
+            cur.execute("INSERT INTO PollVotes (PollID,ChoiceID,Email) VALUES (%i,%i, '%s')" % (pollID, choiceID, email))
+            myDB.commit()
+        except:
+            myDB.rollback()
+
+
+        self.redirect('/group/' + str(groupID))
+
     def post(self, SK=None, results=None, update=None):
         if self.request.get('register'):
             self.registerPost()
@@ -702,5 +778,9 @@ class BaseHandler(webapp2.RequestHandler):
             self.groupFinderPost()
         elif self.request.get('deleteTutorClass'):
             self.deleteTutorClassPost()
+        elif self.request.get('createPoll'):
+            self.createPollPost()
+        elif self.request.get('pollVote'):
+            self.pollVotePost()
 
 
