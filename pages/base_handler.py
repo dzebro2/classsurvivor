@@ -306,7 +306,7 @@ class BaseHandler(webapp2.RequestHandler):
         description = self.request.get('groupDescription')
         priv = 0
         if privacy == 'privacy':
-            priv = 1
+            priv = 0
         else:
             priv = 0
 
