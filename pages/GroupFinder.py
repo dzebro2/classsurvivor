@@ -45,7 +45,7 @@ class GroupFinder(base_handler.BaseHandler):
             classes.append(row)
         if searchQuery != '':
 
-            parse = searchQuery.split('-')
+            parse = searchQuery.split('=')
 
             for split in parse:
                 newParse.append(split.split('_'))

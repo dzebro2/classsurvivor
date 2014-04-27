@@ -623,7 +623,7 @@ class BaseHandler(webapp2.RequestHandler):
         url = '/groupFinder/'
 
         for count in range(0, len(finalOutput[0])):
-            url += str(finalOutput[0][count]) + '_' + str(finalOutput[1][count]) + '_' + str(finalOutput[2][count]) + '_' + str(finalOutput[3][count]) + '_' + str(finalOutput[4][count]) + '_' + str(finalOutput[5][count]) + '-'
+            url += str(finalOutput[0][count]) + '_' + str(finalOutput[1][count]) + '_' + str(finalOutput[2][count]) + '_' + str(finalOutput[3][count]) + '_' + str(finalOutput[4][count]) + '_' + str(finalOutput[5][count]) + '='
 
         url += '~'
 
